@@ -49,6 +49,7 @@ body {
 .form__title {
     margin-bottom: 2rem;
     text-align: center;
+    color: #ffffff;
 }
 
 .form__message {
@@ -95,12 +96,12 @@ body {
     padding: 1rem 2rem;
     font-weight: bold;
     font-size: 1.1rem;
-    color: #ffffff;
+    color: #444;
     border: none;
     border-radius: var(--border-radius);
     outline: none;
     cursor: pointer;
-    background: var(--color-primary);
+    background: #000000;;
   }
 
   .form__button:hover {
