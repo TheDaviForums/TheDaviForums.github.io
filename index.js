@@ -7,6 +7,11 @@ const firebaseConfig = {
     appId: "1:747867835951:web:084db4a1feb703eafe00da",
     measurementId: "G-2QKNB5QXF4"
   };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  // Initialize variables
+  const auth = firebase.auth()
+  const database = firebase.database()
   
 // JavaScript code to handle the click event and show/hide the boxes
 document.addEventListener('DOMContentLoaded', function() {
