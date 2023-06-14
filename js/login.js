@@ -60,7 +60,7 @@ const firebaseConfig = {
         registerEmail : registerEmail,
         registerUser : registerUser,
         last_login : Date.now(),
-        Points : 0
+        birthday : Date.now(),
       }
       // Push to Firebase Database
       //database_ref.child('users/' + user.uid).set(user_data)
@@ -70,7 +70,7 @@ const firebaseConfig = {
         return updatePromise;
     }).then(() => {
         alert('User Logged In!!')
-        window.location.href = "/"
+        window.location.href = "https://thedaviforums.github.io/"
       }).catch(function(error) {
         // Firebase will use this to alert of its errors
         alert(error.message)
