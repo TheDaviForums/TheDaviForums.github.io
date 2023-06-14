@@ -1,6 +1,7 @@
+<!--Login Stuff-->
 <!DOCTYPE html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name ="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <title>Login / Sign Up Form</title>
     <link rel="shortcut icon" href="/assets/favicon.ico">
@@ -8,14 +9,14 @@
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
-</head>
+  </head>
 
-<!--Login Form-->
-<body>
-    <nav class="navbar" style="background-color: #333;">
+  <!--Login Form-->
+  <body>
+    <nav class="navbar">
         <div class="brand-title">
-            The Davi Forums
-        </div>
+          <img align = "left" src="#" alt="The Davi Forums" width="10%" height="10%" />
+          UNT Recycling</div>
 
         <!--Creating the hamburger button-->
         <a href="#" class="toggle-button">
@@ -28,71 +29,71 @@
         <div class="navbar-links">
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="#">Forums</a></li>
-                <li><a href="#">Members</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Store</a></li>
+                <li><a href="/content/recinfo.html">How To Recycle</a></li>
+                <li><a href="https://mean-green-deal.github.io/content/about.html">About Us</a></li>
+                <li><a href="https://mean-green-deal.github.io/content/contact.html">Contact US</a></li>
             </ul>
         </div>
+
     </nav>
+    </body>
+    <body>
+    <div class="container">
+        <form class="form" id="login">
+            <h1 class="form__title">Login</h1>
+            <div class="form__message form__message--error"></div>
+            <div class="form__input-group">
+                <input type="text" class="form__input" id="email" autofocus placeholder="email">
+                <div class="form__input-error-message"></div>
+            </div>
+            <div class="form__input-group">
+                <input type="password" class="form__input" id="password" autofocus placeholder="Password">
+                <div class="form__input-error-message"></div>
+            </div>
 
-    <body style="background-color: black;">
-        <div class="container">
-            <form class="form" id="login" style="background-color: #444; border: none;">
-                <h1 class="form__title">Login</h1>
-                <div class="form__message form__message--error"></div>
-                <div class="form__input-group">
-                    <input type="text" class="form__input" id="email" autofocus placeholder="Email">
-                    <div class="form__input-error-message"></div>
-                </div>
-                <div class="form__input-group">
-                    <input type="password" class="form__input" id="password" placeholder="Password">
-                    <div class="form__input-error-message"></div>
-                </div>
+            <button class="form__button" type="button" onclick="login()">Continue</button>
 
-                <button class="form__button" type="button" onclick="login()">Continue</button>
+            <p class="form__text">
+                <a href="forgotpass.html" class="form__link">Forgot your password?</a>
+            </p>
+            <p class="form__text">
+                <a class="form__link" href="./" id="linkCreateAccount" c>Don't have an account? Create account</a>
+            </p>
+        </form>
 
-                <p class="form__text">
-                    <a href="forgotpass.html" class="form__link">Forgot your password?</a>
-                </p>
-                <p class="form__text">
-                    <a class="form__link form__link--light" href="./" id="linkCreateAccount">Don't have an account? Create account</a>
-                </p>
-            </form>
-
-            <!--Create Account Form-->
-            <form class="form form--hidden" id="createAccount">
-                <h1 class="form__title">Create Account</h1>
-                <div class="form__message form__message--error"></div>
-                <div class="form__input-group">
-                    <input type="text" class="form__input" id="newUser" autofocus placeholder="Username">
-                    <div class="form__input-error-message"></div>
-                </div>
-                <div class="form__input-group">
-                    <input type="text" class="form__input" id="newEmail" autofocus placeholder="Email Address">
-                    <div class="form__input-error-message"></div>
-                </div>
-                <div class="form__input-group">
-                    <input type="password" class="form__input" id="newPassword" autofocus placeholder="Password">
-                    <div class="form__input-error-message"></div>
-                </div>
-                <div class="form__input-group">
-                    <input type="password" class="form__input" id="confirmPassword" autofocus placeholder="Confirm password">
-                    <div class="form__input-error-message"></div>
-                </div>
-                <button class="form__button" id="linkLogin" type="button" onclick="registerUser()">Continue</button>
-                <p class="form__text">
-                    <a class="form__link" href="./" id="linkLogin">Already have an account? Sign in</a>
-                </p>
-            </form>
-        </div>
-
+          <!--Create Account Form-->
+        <form class="form form--hidden" id="createAccount">
+            <h1 class="form__title">Create Account</h1>
+            <div class="form__message form__message--error"></div>
+            <div class="form__input-group">
+                <input type="text" class="form__input" id="newUser" autofocus placeholder="Username">
+                <div class="form__input-error-message"></div>
+            </div>
+            <div class="form__input-group">
+                <input type="text" class="form__input" id="newEmail" autofocus placeholder="Email Address">
+                <div class="form__input-error-message"></div>
+            </div>
+            <div class="form__input-group">
+                <input type="password" class="form__input" id = "newPassword" autofocus placeholder="Password">
+                <div class="form__input-error-message"></div>
+            </div>
+            <div class="form__input-group">
+                <input type="password" class="form__input" id = "confirmPassword" autofocus placeholder="Confirm password">
+                <div class="form__input-error-message"></div>
+            </div>
+            <button class="form__button" id="linkLogin" type="button" onclick="registerUser()">Continue</button>
+            <p class="form__text">
+                <a class="form__link" href="./" id="linkLogin" c>Already have an account? Sign in</a>
+            </p>
+        </form>
+    </div>
+    
         <!-- The core Firebase JS SDK is always required and must be listed first -->
         <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
         <!-- TODO: Add SDKs for Firebase products that you want to use
              https://firebase.google.com/docs/web/setup#available-libraries -->
         <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
-        <script src="/js/login.js"></script>
-    </body>
-</body>
+    <script src="/js/login.js"></script>
+  </body>
+  
