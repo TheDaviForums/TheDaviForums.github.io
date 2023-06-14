@@ -75,14 +75,20 @@
         }
 
         .rainbow-text {
-            background: -webkit-linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
+            background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: rainbow-animation 5s linear infinite;
+            animation: rainbow-animation 10s linear infinite;
         }
 
         @keyframes rainbow-animation {
             0% { background-position: 0% 50%; }
+            14% { background-position: 14% 50%; }
+            28% { background-position: 28% 50%; }
+            42% { background-position: 42% 50%; }
+            57% { background-position: 57% 50%; }
+            71% { background-position: 71% 50%; }
+            85% { background-position: 85% 50%; }
             100% { background-position: 100% 50%; }
         }
     </style>
