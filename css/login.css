@@ -6,7 +6,7 @@ body {
     --color-success: #4bb544;
     --border-radius: 4px;
 
-
+    font-family: Arial, sans-serif;
     margin: 0;
     height: 100vh;
     display: flex;
@@ -50,6 +50,7 @@ body {
     margin-bottom: 2rem;
     text-align: center;
     color: #ffffff;
+    font-family: Arial, sans-serif;
 }
 
 .form__message {
@@ -102,6 +103,7 @@ body {
     outline: none;
     cursor: pointer;
     background: #000000;;
+    font-family: Arial, sans-serif;
   }
 
   .form__button:hover {
@@ -142,6 +144,7 @@ body {
   font-size: 4vw;
   margin: 0.5vw;
   margin-right: 5%;
+  font-family: Arial, sans-serif;
 }
 
 .navbar-links ul {
