@@ -12,7 +12,7 @@ const firebaseConfig = {
   // Initialize variables
   const auth = firebase.auth()
   const database = firebase.database()
-  
+  var ref = database.ref('members');
 // JavaScript code to handle the click event and show/hide the boxes
 document.addEventListener('DOMContentLoaded', function() {
     var announcementsBox = document.getElementById('announcements-box');
@@ -60,10 +60,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-firebase.auth().onAuthStateChanged(function(members) {
+firebase.auth().onAuthStateChanged(function(user) {
     const userIdElement = document.getElementById('myid');
     // Check if there is a current user signed in.
-    if (members) {
+    if (user) {
       // Get the user's email.
       const email = user.email;
       // Set the HTML content of the span element to the user's email.
@@ -77,7 +77,7 @@ firebase.auth().onAuthStateChanged(function(members) {
       const authButton = document.getElementById('authButton');
       authButton.addEventListener('click', function() {
       // Redirect to your login page
-      window.location.href = 'html/login.html';
+      window.location.href = 'content/login.html';
     });
     }
   });
