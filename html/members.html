@@ -1,0 +1,145 @@
+
+<!--Login Stuff-->
+<!DOCTYPE html>
+<head>
+    <meta name ="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Login / Sign Up Form</title>
+    <link rel="shortcut icon" href="/assets/favicon.ico">
+    <link rel="stylesheet" href="/css/login.css">
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+  </head>
+
+  <!--Login Form-->
+  <body>
+    <nav class="navbar">
+        <div class="brand-title">The Davi Forums</div>
+
+        <!--Creating the hamburger button-->
+        <a href="#" class="toggle-button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </a>
+        <!--Hamburger button above ^^^^^^^^^^^^^^^-->
+        <div class="navbar-links">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="#">Forums</a></li>
+                <li><a href="#">Members</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Store</a></li>
+            </ul>
+        </div>
+<!--Start of the leaderboard-->
+<title>User Points</title>
+    <style>
+     table {
+      margin-top: -35%;
+      margin-right: 5%;
+      width: 20%;
+      float: right;
+      text-align: center;
+      overflow-y: scroll;
+      height: 1px;
+    }
+
+    th, td {
+      border: 0.0625em solid white;
+      padding: 0.3125em;
+      font-size: 1.5em;
+    }
+
+    tbody {
+      text-align: center;
+    }
+
+    @media screen and (max-width: 600px) {
+      table {
+        margin-top: -35em;
+        margin-right: 0em;
+        width: 1%;
+        float: right;
+        text-align: center;
+      }
+
+      th, td {
+        font-size: 0.5em;
+        min-width: 1.2em;
+      }
+    }
+    </style>
+  </head>
+  <body>
+    <div>
+      <table style="border-collapse: collapse;">
+        <thead style="background-color: green; color: white;">
+          <tr><th></th><th>Member</th></tr>
+        </thead>
+        <tbody id="output" style="background-color: green; color: white;">
+        </tbody>
+    </div>
+
+
+<script>
+  
+const firebaseConfig = {
+  apiKey: "AIzaSyAFvVTARYzQrWvE9OXCTY3JV3o9SxHbJ7U",
+  authDomain: "mean-green-deal-726f9.firebaseapp.com",
+  projectId: "mean-green-deal-726f9",
+  storageBucket: "mean-green-deal-726f9.appspot.com",
+  messagingSenderId: "747867835951",
+  appId: "1:747867835951:web:084db4a1feb703eafe00da",
+  measurementId: "G-2QKNB5QXF4"
+};
+
+-      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      // Create a reference to the database
+      var database = firebase.database();
+      var ref = database.ref('members');
+
+      ref.once('value', function(snapshot) {
+        // Get the data as an object
+        var data = snapshot.val();
+        var position = 1;
+
+        // Convert the data object into an array of objects
+        var dataArray = Object.keys(data).map(function(key) {
+          return {
+            key: key,
+            registerUser: data[key].registerUser,
+          };
+        });
+
+        // Loop through the sorted array and create HTML elements to display it
+        var output = '';
+        for (var i = 0; i < 10; i++) {
+          output += '<tr><td style="border: 1px solid white; padding: 5px;">' + position + '</td><td style="border: 1px solid white; padding: 5px;">' + dataArray[i].registerUser + '</td></tr>';
+          position++;
+        }
+
+        /*
+        TODO
+        //Added user at the bottom
+        firebase.auth().onAuthStateChanged(function(user) {
+          const userIdElement = document.getElementById('myid');
+          // Check if there is a current user signed in.
+          if (user) {
+            const username = user.registerUser;
+            output += '<tr><td style="border: 1px solid white; padding: 5px;">' + position + '</td><td style="border: 1px solid white; padding: 5px;">' + username + '</td><td style="border: 1px solid white; padding: 5px;">' + dataArray[i].Points + '</td></tr>';
+    }
+*/
+
+        // Display the output on the web page
+        var outputTbody = document.getElementById('output');
+        if (outputTbody) {
+          outputTbody.innerHTML = output;
+        } else {
+          console.log('Output tbody not found');
+        }
+      });
