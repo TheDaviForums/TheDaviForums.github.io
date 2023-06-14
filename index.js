@@ -78,7 +78,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       const authButton = document.getElementById('authButton');
       authButton.addEventListener('click', function() {
       // Redirect to your login page
-      window.location.href = 'content/login.html';
+      window.location.href = 'html/login.html';
     });
     }
   });
