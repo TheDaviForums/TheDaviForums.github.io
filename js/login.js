@@ -60,7 +60,6 @@ const firebaseConfig = {
         registerEmail : registerEmail,
         registerUser : registerUser,
         last_login : Date.now(),
-        birthday : Date.now.toDate(),
       }
       // Push to Firebase Database
       //database_ref.child('users/' + user.uid).set(user_data)
