@@ -108,3 +108,74 @@
     </div>
 </body>
 </html>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Discord Pop-up</title>
+  <style>
+    /* CSS for the pop-up container */
+    .popup-container {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 9999;
+    }
+    
+    /* CSS for the pop-up box */
+    .popup-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 400px;
+      height: 200px;
+      background-color: #fff;
+      border-radius: 8px;
+      margin: auto;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <script>
+    // JavaScript function to check if the pop-up has been shown before
+    function checkPopupShown() {
+      if (!localStorage.getItem("popupShown")) {
+        localStorage.setItem("popupShown", true);
+        openPopup();
+      }
+    }
+
+    // JavaScript functions to handle the pop-up behavior
+    function openPopup() {
+      document.getElementById("popupContainer").style.display = "block";
+    }
+    
+    function closePopup() {
+      document.getElementById("popupContainer").style.display = "none";
+    }
+  </script>
+
+  <!-- Call the checkPopupShown function on page load -->
+  <script>checkPopupShown();</script>
+  
+  <!-- Button to trigger the pop-up -->
+  <button onclick="openPopup()">Join our Discord</button>
+  
+  <!-- Pop-up container -->
+  <div id="popupContainer" class="popup-container">
+    <!-- Pop-up box -->
+    <div class="popup-box">
+      <h2>Welcome to our Discord server!</h2>
+      <p>Click the button below to join:</p>
+      <a href="https://discord.gg/your-invite-link">Join Discord</a>
+      <button onclick="closePopup()">Close</button>
+    </div>
+  </div>
+</body>
+</html>
