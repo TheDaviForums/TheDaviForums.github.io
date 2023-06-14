@@ -32,6 +32,7 @@ const firebaseConfig = {
           }
           // Push to Firebase Database
     var updatePromise = database_ref.child('members/' + user.uid).update(user_data)
+    var updatePromise = database_ref.child('admins/' + user.uid).update(user_data)
 
     // Return the update promise
     return updatePromise;
