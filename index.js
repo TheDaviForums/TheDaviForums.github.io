@@ -1,3 +1,13 @@
+const firebaseConfig = {
+    apiKey: "AIzaSyAFvVTARYzQrWvE9OXCTY3JV3o9SxHbJ7U",
+    authDomain: "mean-green-deal-726f9.firebaseapp.com",
+    projectId: "mean-green-deal-726f9",
+    storageBucket: "mean-green-deal-726f9.appspot.com",
+    messagingSenderId: "747867835951",
+    appId: "1:747867835951:web:084db4a1feb703eafe00da",
+    measurementId: "G-2QKNB5QXF4"
+  };
+  
 // JavaScript code to handle the click event and show/hide the boxes
 document.addEventListener('DOMContentLoaded', function() {
     var announcementsBox = document.getElementById('announcements-box');
@@ -44,3 +54,22 @@ document.addEventListener('DOMContentLoaded', function() {
         tab.addEventListener('click', handleTabClick);
     });
 });
+
+      // Check if there is a current user signed in.
+      if (user) {
+        // Get the user's email.
+        const email = user.email;
+        // Set the HTML content of the span element to the user's email.
+        userIdElement.innerHTML = email;
+        signOutButtonContainer.style.display = 'inline'; // Show the sign out button when user is logged in
+      } else {
+        // If no user is signed in, display "Guest" as the user ID.
+        userIdElement.innerHTML = 'Login/Sign Up';
+        signOutButtonContainer.style.display = 'none'; // Hide the sign out button when user is not logged in
+        // Add a click event listener to the authButton
+        const authButton = document.getElementById('authButton');
+        authButton.addEventListener('click', function() {
+        // Redirect to your login page
+        window.location.href = 'content/login.html';
+      });
+      }
