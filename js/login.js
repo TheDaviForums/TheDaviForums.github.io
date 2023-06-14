@@ -1,5 +1,11 @@
 const firebaseConfig = {
-   
+  apiKey: "AIzaSyA0lgyqDkVdCJrC0u6T1_mv9jIJZDDvxDw",
+  authDomain: "thedaviforums.firebaseapp.com",
+  projectId: "thedaviforums",
+  storageBucket: "thedaviforums.appspot.com",
+  messagingSenderId: "208690814999",
+  appId: "1:208690814999:web:d1d48bbe6028debbc4bc52",
+  measurementId: "G-FM0NSTQLXQ"
     };
      // Initialize Firebase
      firebase.initializeApp(firebaseConfig);
@@ -64,7 +70,7 @@ const firebaseConfig = {
         return updatePromise;
     }).then(() => {
         alert('User Logged In!!')
-        window.location.href = "https://mean-green-deal.github.io/content/userloggedin.html"
+        window.location.href = "/"
       }).catch(function(error) {
         // Firebase will use this to alert of its errors
         alert(error.message)
@@ -108,7 +114,7 @@ const firebaseConfig = {
       LoginInfo.push(newUser)
       alert("Your Account has been created!")
 
-      location.href = 'https://mean-green-deal.github.io/';
+      location.href = '/';
       return
   }
   else{
