@@ -24,36 +24,24 @@ body {
     box-shadow: 0 0 40px rgba(0,0,0,0.2);
     border-radius: var(--border-radius);
     background-color: #333;
-    color: black;
+    color: white;
 }
 
-.form--hidden {
-    display: none;
-}
-
-.container,
 .form__input,
 .form__button {
     font: 500 1rem 'Quicksand', sans-serif;
 }
 
-.form > *:first-child{
-    margin-top: 0;
-}
-
-.form > *:last-child{
-    margin-bottom: 0;
-}
-
 .form__title {
     margin-bottom: 2rem;
     text-align: center;
-    color: black;
+    color: white;
 }
 
 .form__message {
     text-align: center;
     margin-bottom: 1rem;
+    color: white;
 }
 
 .form__message--success {
@@ -76,14 +64,14 @@ body {
     border-radius: var(--border-radius);
     border: 1px solid #dddddd;
     outline: none;
-    background: #444;
+    background: #eee;
     color: black;
     transition: background 0.2s, border-color 0.2s;
 }
 
 .form__input:focus {
     border-color: var(--color-primary);
-    background: #555;
+    background: #fff;
     color: black;
 }
 
@@ -97,12 +85,12 @@ body {
     padding: 1rem 2rem;
     font-weight: bold;
     font-size: 1.1rem;
-    color: black;
+    color: white;
     border: none;
     border-radius: var(--border-radius);
     outline: none;
     cursor: pointer;
-    background: #555;
+    background: black;
 }
 
 .form__button:hover {
@@ -115,10 +103,11 @@ body {
 
 .form__text {
     text-align: center;
+    color: white;
 }
 
 .form__link {
-    color: black;
+    color: white;
     text-decoration: none;
     cursor: pointer;
 }
