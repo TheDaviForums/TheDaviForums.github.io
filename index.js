@@ -91,3 +91,33 @@ firebase.auth().onAuthStateChanged(function(user) {
       console.log(error);
     });
   }
+
+  //Display online users start
+  // ...
+
+// Function to update the online user count
+function updateOnlineUserCount(count) {
+    const onlineUsersElement = document.getElementById('onlineUsers');
+    onlineUsersElement.textContent = 'Total online users: ' + count;
+}
+
+// Function to listen for changes in the online user count
+function listenForOnlineUserCount() {
+    var onlineUsersRef = database.ref('.info/connected');
+    onlineUsersRef.on('value', function(snapshot) {
+        if (snapshot.val() === true) {
+            var userOnlineRef = database.ref('onlineUsers');
+            userOnlineRef.onDisconnect().remove();
+            userOnlineRef.once('value').then(function(snapshot) {
+                var count = snapshot.numChildren();
+                updateOnlineUserCount(count);
+            });
+        }
+    });
+}
+
+// ...
+
+// Call the function to listen for changes in the online user count
+listenForOnlineUserCount();
+//end of displaying users
