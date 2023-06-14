@@ -55,21 +55,24 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-      // Check if there is a current user signed in.
-      if (user) {
-        // Get the user's email.
-        const email = user.email;
-        // Set the HTML content of the span element to the user's email.
-        userIdElement.innerHTML = email;
-        signOutButtonContainer.style.display = 'inline'; // Show the sign out button when user is logged in
-      } else {
-        // If no user is signed in, display "Guest" as the user ID.
-        userIdElement.innerHTML = 'Login/Sign Up';
-        signOutButtonContainer.style.display = 'none'; // Hide the sign out button when user is not logged in
-        // Add a click event listener to the authButton
-        const authButton = document.getElementById('authButton');
-        authButton.addEventListener('click', function() {
-        // Redirect to your login page
-        window.location.href = 'content/login.html';
-      });
-      }
+firebase.auth().onAuthStateChanged(function(members) {
+    const userIdElement = document.getElementById('myid');
+    // Check if there is a current user signed in.
+    if (members) {
+      // Get the user's email.
+      const email = user.email;
+      // Set the HTML content of the span element to the user's email.
+      userIdElement.innerHTML = email;
+      signOutButtonContainer.style.display = 'inline'; // Show the sign out button when user is logged in
+    } else {
+      // If no user is signed in, display "Guest" as the user ID.
+      userIdElement.innerHTML = 'Login/Sign Up';
+      signOutButtonContainer.style.display = 'none'; // Hide the sign out button when user is not logged in
+      // Add a click event listener to the authButton
+      const authButton = document.getElementById('authButton');
+      authButton.addEventListener('click', function() {
+      // Redirect to your login page
+      window.location.href = 'content/login.html';
+    });
+    }
+  });
