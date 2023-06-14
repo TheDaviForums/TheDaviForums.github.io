@@ -77,7 +77,16 @@ firebase.auth().onAuthStateChanged(function(members) {
       const authButton = document.getElementById('authButton');
       authButton.addEventListener('click', function() {
       // Redirect to your login page
-      window.location.href = 'content/login.html';
+      window.location.href = 'html/login.html';
     });
     }
   });
+  function signOut(){
+    firebase.auth().signOut().then(function() {
+      // Sign-out successful.
+      alert('User Signed Out')
+    }).catch(function(error) {
+      // An error happened.
+      console.log(error);
+    });
+  }
