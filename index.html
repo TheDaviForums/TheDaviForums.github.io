@@ -48,6 +48,7 @@
         
         .forum-post h2 {
             font-family: Arial, sans-serif;
+            margin-bottom: 10px; /* Added margin */
         }
         
         .announcements {
@@ -73,6 +74,50 @@
             right: 10px;
             font-size: 8px;
         }
+
+        .rainbow-text {
+            color: white;
+        }
+
+        .community-section {
+            background-color: #777;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .community-section hr {
+            border: none;
+            border-top: 1px solid white;
+            margin-bottom: 10px;
+        }
+
+        .online-users {
+            font-size: 18px;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .tabs a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: #444;
+            margin-right: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .tabs a:hover {
+            background-color: #666;
+        }
     </style>
 </head>
 <body>
@@ -93,89 +138,30 @@
     <div class="content">
         <div class="forum-post">
             <h2>Forum Post</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquam interdum sapien, a tristique purus eleifend vitae. Fusce pharetra sem a ex scelerisque, vel mattis neque convallis.</p>
+            <p>Here will be anything related to the forums.</p>
         </div>
         
         <div class="announcements">
             <h2>Announcements</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquam interdum sapien, a tristique purus eleifend vitae.</p>
-            <p>Fusce pharetra sem a ex scelerisque, vel mattis neque convallis.</p>
+            <p>Here will be anything new that comes out like music etc...</p>
         </div>
     </div>
-    
+
+    <div class="community-section">
+        <div class="tabs">
+            <a href="#">Announcements</a>
+            <a href="#">Topics</a>
+            <a href="#">My Music</a>
+            <a href="#">Suggestions</a>
+        </div>
+        <hr>
+        <div class="online-users">
+            Total online users: 123
+        </div>
+    </div>
+
     <div class="tiny-text">
-        <p>YungDavi Is A God</p>
+        <p class="rainbow-text">YungDavi Is A God</p>
     </div>
-</body>
-</html>
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Discord Pop-up</title>
-  <style>
-    /* CSS for the pop-up container */
-    .popup-container {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 9999;
-    }
-    
-    /* CSS for the pop-up box */
-    .popup-box {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 400px;
-      height: 200px;
-      background-color: #fff;
-      border-radius: 8px;
-      margin: auto;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    }
-  </style>
-</head>
-<body>
-  <script>
-    // JavaScript function to check if the pop-up has been shown before
-    function checkPopupShown() {
-      if (!localStorage.getItem("popupShown")) {
-        localStorage.setItem("popupShown", true);
-        openPopup();
-      }
-    }
-
-    // JavaScript functions to handle the pop-up behavior
-    function openPopup() {
-      document.getElementById("popupContainer").style.display = "block";
-    }
-    
-    function closePopup() {
-      document.getElementById("popupContainer").style.display = "none";
-    }
-  </script>
-
-  <!-- Call the checkPopupShown function on page load -->
-  <script>checkPopupShown();</script>
-  
-  <!-- Button to trigger the pop-up -->
-  <button onclick="openPopup()">Join our Discord</button>
-  
-  <!-- Pop-up container -->
-  <div id="popupContainer" class="popup-container">
-    <!-- Pop-up box -->
-    <div class="popup-box">
-      <h2>Welcome to our Discord server!</h2>
-      <p>Click the button below to join:</p>
-      <a href="https://discord.gg/ed8Sn5fA">Join Discord</a>
-      <button onclick="closePopup()">Close</button>
-    </div>
-  </div>
 </body>
 </html>
