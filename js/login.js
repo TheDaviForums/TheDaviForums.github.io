@@ -31,13 +31,13 @@ const firebaseConfig = {
             last_login : Date.now()
           }
           // Push to Firebase Database
-    var updatePromise = database_ref.child('users/' + user.uid).update(user_data)
+    var updatePromise = database_ref.child('members/' + user.uid).update(user_data)
 
     // Return the update promise
     return updatePromise;
   }).then(() => {
     alert('User Logged In!!')
-    window.location.href = "#"
+    window.location.href = "https://thedaviforums.github.io/"
   }).catch(function(error) {
     // Firebase will use this to alert of its errors
     alert(error.message)
@@ -65,7 +65,7 @@ const firebaseConfig = {
       // Push to Firebase Database
       //database_ref.child('users/' + user.uid).set(user_data)
         //NEW REDIRECT//
-        var updatePromise = database_ref.child('users/' + user.uid).set(user_data)
+        var updatePromise = database_ref.child('members/' + user.uid).set(user_data)
       //NEW REDIRECT//
         return updatePromise;
     }).then(() => {
