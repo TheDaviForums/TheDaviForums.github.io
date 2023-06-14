@@ -1,7 +1,7 @@
 body {
     --color-primary: #009507;
-    --color-primary-dark: #007f67;
-    --color-secondary: #252c6a;
+    --color-primary-dark: #ffffff;
+    --color-secondary: #ffffff;
     --color-error: #cc3333;
     --color-success: #4bb544;
     --border-radius: 4px;
@@ -141,6 +141,7 @@ body {
 .brand-title {
   font-size: 4vw;
   margin: 0.5vw;
+  text-align: center;
 }
 
 .navbar-links ul {
