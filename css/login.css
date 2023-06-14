@@ -141,7 +141,7 @@ body {
 .brand-title {
   font-size: 4vw;
   margin: 0.5vw;
-  text-align: center;
+  margin-right: 5%;
 }
 
 .navbar-links ul {
