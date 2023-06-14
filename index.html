@@ -133,8 +133,10 @@
             <a href="html/store.html">Store</a>
         </div>
         <div class="right-menu">
-            <li style="list-style-type: none;"><a href="#" id="authButton"><span id="myid"></span></a></li>
-            <li style="list-style-type: none;" id="signOutButtonContainer" style="display: none;"><a onclick="signOut()">Sign Out</a></li>
+            <li style="display: flex; align-items: center;">
+                <a href="#" id="authButton"><span id="myid"></span></a>
+                <span id="signOutButtonContainer" style="display: none; margin-left: 10px;"><a onclick="signOut()">Sign Out</a></span>
+            </li>
         </div>
     </div>
     
