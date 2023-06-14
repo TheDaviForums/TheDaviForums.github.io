@@ -1,9 +1,9 @@
 body {
-    --color-primary: #009507;
+    --color-primary: #000000;
     --color-primary-dark: #ffffff;
     --color-secondary: #ffffff;
     --color-error: #cc3333;
-    --color-success: #4bb544;
+    --color-success: #000000;
     --border-radius: 4px;
 
     font-family: Arial, sans-serif;
@@ -141,7 +141,7 @@ body {
 }
 
 .brand-title {
-  font-size: 4vw;
+  font-size: 1vw;
   margin: 0.5vw;
   margin-right: 50%;
   font-family: Arial, sans-serif;
