@@ -1,10 +1,11 @@
 body {
-    --color-primary: #007f67;
+    --color-primary: #009507;
     --color-primary-dark: #007f67;
     --color-secondary: #252c6a;
     --color-error: #cc3333;
     --color-success: #4bb544;
     --border-radius: 4px;
+
 
     margin: 0;
     height: 100vh;
@@ -12,8 +13,7 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 18px;
-    background-color: black;
-    background-image: url(/pictures/8q9lvH-420156787.png);
+    background: url(/pictures/8q9lvH-420156787.png);
     background-size: cover;
 }
 
@@ -24,8 +24,8 @@ body {
     padding: 2rem;
     box-shadow: 0 0 40px rgba(0,0,0,0.2);
     border-radius: var(--border-radius);
-    background-color: #333;
-    color: white;
+    background: #ffffff;
+
 }
 
 .form--hidden {
@@ -54,7 +54,6 @@ body {
 .form__message {
     text-align: center;
     margin-bottom: 1rem;
-    color: darkgrey;
 }
 
 .form__message--success {
@@ -79,52 +78,141 @@ body {
     outline: none;
     background: #eeeeee;
     transition: background 0.2s, border-color 0.2s;
-    color: darkgrey;
 }
 
-.form__input:focus {
+  .form__input:focus {
     border-color: var(--color-primary);
     background: #ffffff;
-    color: black;
-}
+  }
 
-.form__input--error {
-    color: var(--color-error);
+  .form__input--error {
+    color:var(--color-error);
     border-color: var(--color-error);
-}
+  }
 
-.form__button {
+  .form__button {
     width: 100%;
     padding: 1rem 2rem;
     font-weight: bold;
     font-size: 1.1rem;
-    color: black;
+    color: #ffffff;
     border: none;
     border-radius: var(--border-radius);
     outline: none;
     cursor: pointer;
-    background: #555;
-}
+    background: var(--color-primary);
+  }
 
-.form__button:hover {
-    background: #333;
-}
+  .form__button:hover {
+    background: var(--color-primary-dark);
+  }
 
-.form__button:active {
+  .form__button:active {
     transform: scale(.98);
-}
+  }
 
-.form__text {
+  .form__text {
     text-align: center;
-    color: darkgrey;
-}
 
-.form__link {
-    color: darkgrey;
+  }
+
+  .form__link {
+    color: var(--color-secondary);
     text-decoration: none;
     cursor: pointer;
+  }
+
+  .form__link:hover {
+    text-decoration: underline;
+  }
+  /*copying sams header*/
+.navbar {
+  position:absolute;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: #1b6e3b; 
+  color: white;
 }
 
-.form__link:hover {
-    text-decoration: underline;
+.brand-title {
+  font-size: 4vw;
+  margin: 0.5vw;
+}
+
+.navbar-links ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.navbar-links li    {
+  list-style: none;
+}
+
+.navbar-links li a  {
+  text-decoration: none;
+  color: white;
+  padding: 1rem;
+  display: block;
+}
+
+.navbar-links li:hover   {
+  background-color: #555;
+}
+
+.toggle-button {
+  position: absolute; /* This makes it so that position doesn't change no matter what */
+  top: .75rem; /* gives space from the top */
+  right: 1rem; /* gives space from the right */
+  display: none; /* if we want to only show it while it while minimized, set this as none */
+  flex-direction: column; /* Shows spans vertically */
+  justify-content: space-between; /* leaves enough space between spans */
+  width: 30px;
+  height: 21px;
+}
+
+.toggle-button .bar {
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+}
+
+/* we will use a Media Query. This makes it so that when a condition is met, then something will execute.
+*/
+
+@media (max-width: 600px)   {
+  .toggle-button {
+      display: flex;
+  }
+
+  .navbar-links {
+      display: none;
+      width: 100%;
+  }
+
+  .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  .navbar-links ul {
+      width: 100px;
+      flex-direction: column;
+  }
+
+  .navbar-links li {
+      text-align: center;
+  }
+
+  .navbar-links li a {
+      padding: .5rem 1rem;
+  }
+
+  .navbar-links.active {
+      display: flex;
+  }
 }
