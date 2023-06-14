@@ -1,11 +1,12 @@
 const firebaseConfig = {
-    apiKey: "AIzaSyAFvVTARYzQrWvE9OXCTY3JV3o9SxHbJ7U",
-    authDomain: "mean-green-deal-726f9.firebaseapp.com",
-    projectId: "mean-green-deal-726f9",
-    storageBucket: "mean-green-deal-726f9.appspot.com",
-    messagingSenderId: "747867835951",
-    appId: "1:747867835951:web:084db4a1feb703eafe00da",
-    measurementId: "G-2QKNB5QXF4"
+    apiKey: "AIzaSyA0lgyqDkVdCJrC0u6T1_mv9jIJZDDvxDw",
+    authDomain: "thedaviforums.firebaseapp.com",
+    databaseURL: "https://thedaviforums-default-rtdb.firebaseio.com",
+    projectId: "thedaviforums",
+    storageBucket: "thedaviforums.appspot.com",
+    messagingSenderId: "208690814999",
+    appId: "1:208690814999:web:d1d48bbe6028debbc4bc52",
+    measurementId: "G-FM0NSTQLXQ"
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
