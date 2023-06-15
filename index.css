@@ -4,13 +4,9 @@
     margin-bottom: 10px;
 }
 .suggestions {
-    border: 1px solid #444;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-
-.suggestions h2 {
-    border: 1px solid #444;
-    padding: 10px;
-    font-size: 20px;
+    margin-top: 0; /* Remove the margin-top */
+    padding: 20px;
+    background-color: #444;
+    border-radius: 10px;
+    flex: 1;
 }
