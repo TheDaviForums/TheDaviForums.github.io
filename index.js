@@ -140,7 +140,6 @@ submitAnnouncementButton.addEventListener('click', function() {
     });
 });
 
-
 // Listen for changes in the announcements and update the UI
 const announcementsList = document.getElementById('announcementsList');
 firebase.database().ref('Announcements').orderByChild('timestamp').on('value', function(snapshot) {
@@ -162,11 +161,19 @@ firebase.database().ref('Announcements').orderByChild('timestamp').on('value', f
     // Render the sorted announcements
     announcements.forEach(function(announcement) {
         const announcementElement = document.createElement('div');
-        announcementElement.innerHTML = `<h3>${announcement.subject}</h3><p>${announcement.body}</p>`;
+        announcementElement.classList.add('announcement-box'); // Add the 'announcement-box' class
+
+        // Create the HTML structure for the announcement
+        const announcementHTML = `
+            <h3>${announcement.subject}</h3>
+            <p>${announcement.body}</p>
+        `;
+
+        announcementElement.innerHTML = announcementHTML;
         announcementsList.appendChild(announcementElement);
     });
 });
-});
+
 function signOut(){
     firebase.database().ref('OnlineUsers/Count').set(firebase.database.ServerValue.increment(-1));
     firebase.auth().signOut().then(function() {
