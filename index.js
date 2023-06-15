@@ -59,7 +59,6 @@ document.addEventListener('DOMContentLoaded', function() {
     tabs.forEach(function(tab) {
         tab.addEventListener('click', handleTabClick);
     });
-});
 
 firebase.auth().onAuthStateChanged(function(user) {
     const userIdElement = document.getElementById('myid');
@@ -182,4 +181,5 @@ firebase.database().ref('announcements').on('value', function(snapshot) {
         announcementElement.innerHTML = `<h3>${announcement.subject}</h3><p>${announcement.body}</p>`;
         announcementsList.appendChild(announcementElement);
     });
+});
 });
