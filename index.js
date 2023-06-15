@@ -60,45 +60,6 @@ document.addEventListener('DOMContentLoaded', function() {
         tab.addEventListener('click', handleTabClick);
     });
 
-firebase.auth().onAuthStateChanged(function(user) {
-    const userIdElement = document.getElementById('myid');
-    // Check if there is a current user signed in.
-    if (user) {
-      // Get the user's email.
-      const email = user.email;
-      // Set the HTML content of the span element to the user's email.
-      userIdElement.innerHTML = email;
-      signOutButtonContainer.style.display = 'inline'; // Show the sign out button when user is logged in
-    } else {
-      // If no user is signed in, display "Guest" as the user ID.
-      userIdElement.innerHTML = 'Login/Sign Up';
-      signOutButtonContainer.style.display = 'none'; // Hide the sign out button when user is not logged in
-      // Add a click event listener to the authButton
-      const authButton = document.getElementById('authButton');
-      authButton.addEventListener('click', function() {
-      // Redirect to your login page
-      window.location.href = 'html/login.html';
-    });
-    }
-  });
-  function signOut(){
-    firebase.database().ref('OnlineUsers/Count').set(firebase.database.ServerValue.increment(-1));
-    firebase.auth().signOut().then(function() {
-      // Sign-out successful.
-      alert('User Signed Out')
-    }).catch(function(error) {
-      // An error happened.
-      console.log(error);
-    });
-  }
-  firebase.database().ref('OnlineUsers/Count').once('value')
-  .then(function(snapshot) {
-    const count = snapshot.val();
-    document.getElementById('onlineUsers').textContent = 'Online User Count: ' + count;
-  })
-  .catch(function(error) {
-    console.log("Error retrieving online user count:", error);
-  });
 
   //Start of announments
   firebase.auth().onAuthStateChanged(function(user) {
@@ -206,3 +167,42 @@ firebase.database().ref('Announcements').orderByChild('timestamp').on('value', f
     });
 });
 });
+function signOut(){
+    firebase.database().ref('OnlineUsers/Count').set(firebase.database.ServerValue.increment(-1));
+    firebase.auth().signOut().then(function() {
+      // Sign-out successful.
+      alert('User Signed Out')
+    }).catch(function(error) {
+      // An error happened.
+      console.log(error);
+    });
+  }
+  firebase.auth().onAuthStateChanged(function(user) {
+    const userIdElement = document.getElementById('myid');
+    // Check if there is a current user signed in.
+    if (user) {
+      // Get the user's email.
+      const email = user.email;
+      // Set the HTML content of the span element to the user's email.
+      userIdElement.innerHTML = email;
+      signOutButtonContainer.style.display = 'inline'; // Show the sign out button when user is logged in
+    } else {
+      // If no user is signed in, display "Guest" as the user ID.
+      userIdElement.innerHTML = 'Login/Sign Up';
+      signOutButtonContainer.style.display = 'none'; // Hide the sign out button when user is not logged in
+      // Add a click event listener to the authButton
+      const authButton = document.getElementById('authButton');
+      authButton.addEventListener('click', function() {
+      // Redirect to your login page
+      window.location.href = 'html/login.html';
+    });
+    }
+  });
+    firebase.database().ref('OnlineUsers/Count').once('value')
+  .then(function(snapshot) {
+    const count = snapshot.val();
+    document.getElementById('onlineUsers').textContent = 'Online User Count: ' + count;
+  })
+  .catch(function(error) {
+    console.log("Error retrieving online user count:", error);
+  });
