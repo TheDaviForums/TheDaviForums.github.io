@@ -100,6 +100,8 @@ firebase.auth().onAuthStateChanged(function(user) {
   .catch(function(error) {
     console.log("Error retrieving online user count:", error);
   });
+
+  //Start of announments
   firebase.auth().onAuthStateChanged(function(user) {
     const userIdElement = document.getElementById('myid');
     const addAnnouncementButtonContainer = document.getElementById('addAnnouncementButtonContainer');
