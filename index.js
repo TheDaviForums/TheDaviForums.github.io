@@ -143,6 +143,13 @@ addAnnouncementButton.addEventListener('click', function() {
     announcementFormContainer.style.display = 'block';
 });
 
+// Cancel Announcement button click event
+const cancelAnnouncementButton = document.getElementById('cancelAnnouncementButton');
+cancelAnnouncementButton.addEventListener('click', function() {
+    document.getElementById('announcementSubject').value = '';
+    document.getElementById('announcementBody').value = '';
+});
+
 // Submit Announcement button click event
 const submitAnnouncementButton = document.getElementById('submitAnnouncementButton');
 submitAnnouncementButton.addEventListener('click', function() {
@@ -169,6 +176,7 @@ submitAnnouncementButton.addEventListener('click', function() {
         }
     });
 });
+
 
 // Listen for changes in the announcements and update the UI
 const announcementsList = document.getElementById('announcementsList');
