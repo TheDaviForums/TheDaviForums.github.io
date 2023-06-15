@@ -159,6 +159,14 @@
             background-color: white;
             color: black;
         }
+
+        .header-title {
+            text-align: center; /* Center align the title */
+        }
+
+        .header-title h1 {
+            margin: 0;
+        }
     </style>
 </head>
 <body>
@@ -219,32 +227,41 @@
                 <button id="cancelAnnouncementButton">Cancel</button>
                 <button id="submitAnnouncementButton">Submit</button>
             </div>
-            <div id="announcementsList"></div>
-        </div>       
-    
-        <div id="topics-box" class="forum-post" style="display: none;">
-            <h2>Topics Box</h2>
-            <p>This is the box for topics.</p>
+            <div id="announcementsList">
+                Loading announcements...
+            </div>
         </div>
 
-        <div id="music-box" class="forum-post" style="display: none;">
-            <h2>My Music Box</h2>
-            <p>This is the box for my music.</p>
+        <div id="topics" class="forum-post">
+            <h2>Topics</h2>
+            <div id="addTopicButtonContainer" style="display: none;">
+                <button id="addTopicButton">Add Topic</button>
+            </div>
+            <div id="topicFormContainer" style="display: none;">
+                <input type="text" id="topicTitle" placeholder="Title"><br>
+                <textarea id="topicContent" placeholder="Content"></textarea><br>
+                <button id="cancelTopicButton">Cancel</button>
+                <button id="submitTopicButton">Submit</button>
+            </div>
+            <div id="topicsList">
+                Loading topics...
+            </div>
         </div>
 
-        <div id="suggestions" class="forum-post" style="display: none;">
+        <div id="music" class="forum-post">
+            <h2>My Music</h2>
+            <p>Here you can share and discuss your own music creations!</p>
+        </div>
+
+        <div id="suggestions" class="forum-post">
             <h2>Suggestions</h2>
-            <p>This is the box for suggestions.</p>
+            <p>Have any ideas or suggestions for the community or the website? Share them here!</p>
         </div>
 
     </div>
 
-    <div class="memebase-window">
-        <iframe src="https://www.memedroid.com/" frameborder="0"></iframe>
-    </div>
-
-    <div class="soundcloud-window">
-        <iframe src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/user-710640859&color=%23555555&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true" frameborder="0"></iframe>
+    <div class="tiny-text">
+        Website created by Davi Rodrigues.
     </div>
 
     <script src="index.js"></script>
