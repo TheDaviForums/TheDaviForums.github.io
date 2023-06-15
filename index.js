@@ -83,6 +83,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
   });
   function signOut(){
+    firebase.database().ref('OnlineUsers/Count').set(firebase.database.ServerValue.increment(-1));
     firebase.auth().signOut().then(function() {
       // Sign-out successful.
       alert('User Signed Out')
@@ -91,33 +92,11 @@ firebase.auth().onAuthStateChanged(function(user) {
       console.log(error);
     });
   }
-
-  //Display online users start
-  // ...
-
-// Function to update the online user count
-function updateOnlineUserCount(count) {
-    const onlineUsersElement = document.getElementById('onlineUsers');
-    onlineUsersElement.textContent = 'Total online users: ' + count;
-}
-
-// Function to listen for changes in the online user count
-function listenForOnlineUserCount() {
-    var onlineUsersRef = database.ref('.info/connected');
-    onlineUsersRef.on('value', function(snapshot) {
-        if (snapshot.val() === true) {
-            var userOnlineRef = database.ref('onlineUsers');
-            userOnlineRef.onDisconnect().remove();
-            userOnlineRef.once('value').then(function(snapshot) {
-                var count = snapshot.numChildren();
-                updateOnlineUserCount(count);
-            });
-        }
-    });
-}
-
-// ...
-
-// Call the function to listen for changes in the online user count
-listenForOnlineUserCount();
-//end of displaying users
+  firebase.database().ref('OnlineUsers/Count').once('value')
+  .then(function(snapshot) {
+    const count = snapshot.val();
+    document.getElementById('onlineUserCount').textContent = 'Online User Count: ' + count;
+  })
+  .catch(function(error) {
+    console.log("Error retrieving online user count:", error);
+  });
