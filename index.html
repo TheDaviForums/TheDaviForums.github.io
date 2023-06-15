@@ -191,13 +191,20 @@
             <h2>My Music Box</h2>
             <p>This is the box for my music.</p>
         </div>
-        <div id="suggestionFormContainer" style="display: none;">
-            <input type="text" id="suggestionSubject" placeholder="Subject"><br>
-            <textarea id="suggestionBody" placeholder="Body"></textarea><br>
-            <button id="cancelSuggestionButton">Cancel</button>
-            <button id="sendSuggestionButton">Submit</button>
+        <div id="suggestions" class="suggestions">
+            <h2>Suggestions</h2>
+            <div id="addSuggestionButtonContainer" style="display: none;">
+                <button id="addSuggestionButton">Add Suggestion</button>
+            </div>
+            <div id="suggestionFormContainer" style="display: none;">
+                <input type="text" id="suggestionSubject" placeholder="Subject"><br>
+                <textarea id="suggestionBody" placeholder="Body"></textarea><br>
+                <button id="cancelSuggestionButton">Cancel</button>
+                <button id="submitSuggestionButton">Submit</button>
+            </div>
+            <div id="suggestionsList"></div>
         </div>
-        
+           
     </div>
     </div>
     
