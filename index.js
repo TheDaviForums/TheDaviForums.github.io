@@ -100,3 +100,84 @@ firebase.auth().onAuthStateChanged(function(user) {
   .catch(function(error) {
     console.log("Error retrieving online user count:", error);
   });
+  firebase.auth().onAuthStateChanged(function(user) {
+    const userIdElement = document.getElementById('myid');
+    const addAnnouncementButtonContainer = document.getElementById('addAnnouncementButtonContainer');
+  
+    if (user) {
+        // User is signed in
+        userIdElement.innerHTML = user.email;
+
+        // Check if the user is an admin
+        const adminsRef = firebase.database().ref('admins');
+        adminsRef.child(user.uid).once('value', function(snapshot) {
+            if (snapshot.exists()) {
+                // User is an admin, show the "Add Announcement" button
+                addAnnouncementButtonContainer.style.display = 'block';
+            } else {
+                // User is not an admin, hide the "Add Announcement" button
+                addAnnouncementButtonContainer.style.display = 'none';
+            }
+        });
+      
+        signOutButtonContainer.style.display = 'inline';
+    } else {
+        // No user is signed in
+        userIdElement.innerHTML = 'Login/Sign Up';
+        addAnnouncementButtonContainer.style.display = 'none';
+        signOutButtonContainer.style.display = 'none';
+        
+        const authButton = document.getElementById('authButton');
+        authButton.addEventListener('click', function() {
+            // Redirect to your login page
+            window.location.href = 'html/login.html';
+        });
+    }
+});
+
+// Add Announcement button click event
+const addAnnouncementButton = document.getElementById('addAnnouncementButton');
+addAnnouncementButton.addEventListener('click', function() {
+    const announcementFormContainer = document.getElementById('announcementFormContainer');
+    announcementFormContainer.style.display = 'block';
+});
+
+// Submit Announcement button click event
+const submitAnnouncementButton = document.getElementById('submitAnnouncementButton');
+submitAnnouncementButton.addEventListener('click', function() {
+    const announcementSubject = document.getElementById('announcementSubject').value;
+    const announcementBody = document.getElementById('announcementBody').value;
+    
+    if (announcementSubject.trim() === '' || announcementBody.trim() === '') {
+        alert('Please fill in both the subject and body fields.');
+        return;
+    }
+    
+    const newAnnouncementRef = firebase.database().ref('announcements').push();
+    newAnnouncementRef.set({
+        subject: announcementSubject,
+        body: announcementBody
+    }, function(error) {
+        if (error) {
+            console.log('Failed to add announcement:', error);
+        } else {
+            console.log('Announcement added successfully!');
+            // Clear the form fields
+            document.getElementById('announcementSubject').value = '';
+            document.getElementById('announcementBody').value = '';
+        }
+    });
+});
+
+// Listen for changes in the announcements and update the UI
+const announcementsList = document.getElementById('announcementsList');
+firebase.database().ref('announcements').on('value', function(snapshot) {
+    announcementsList.innerHTML = ''; // Clear the existing announcements
+    
+    snapshot.forEach(function(childSnapshot) {
+        const announcement = childSnapshot.val();
+        const announcementElement = document.createElement('div');
+        announcementElement.innerHTML = `<h3>${announcement.subject}</h3><p>${announcement.body}</p>`;
+        announcementsList.appendChild(announcementElement);
+    });
+});

@@ -167,10 +167,18 @@
     </div>
 
     <div class="content">
-        <div id="announcements-box" class="forum-post" style="display: none;">
-            <h2>Announcements Box</h2>
-            <p>This is the box for announcements.</p>
-        </div>
+        <div class="announcements">
+            <h2>Announcements</h2>
+            <div id="addAnnouncementButtonContainer" style="display: none;">
+                <button id="addAnnouncementButton">Add Announcement</button>
+            </div>
+            <div id="announcementFormContainer" style="display: none;">
+                <input type="text" id="announcementSubject" placeholder="Subject"><br>
+                <textarea id="announcementBody" placeholder="Body"></textarea><br>
+                <button id="submitAnnouncementButton">Submit</button>
+            </div>
+            <div id="announcementsList"></div>
+        </div>        
         <div id="topics-box" class="forum-post" style="display: none;">
             <h2>Topics Box</h2>
             <p>This is the box for topics.</p>
