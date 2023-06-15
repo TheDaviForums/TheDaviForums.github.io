@@ -146,8 +146,9 @@ addAnnouncementButton.addEventListener('click', function() {
 // Cancel Announcement button click event
 const cancelAnnouncementButton = document.getElementById('cancelAnnouncementButton');
 cancelAnnouncementButton.addEventListener('click', function() {
-    document.getElementById('announcementSubject').value = '';
-    document.getElementById('announcementBody').value = '';
+    document.getElementById('announcementSubject').value = ''; // Clear subject field
+    document.getElementById('announcementBody').value = ''; // Clear body field
+    document.getElementById('announcementFormContainer').style.display = 'none'; // Hide the form
 });
 
 // Submit Announcement button click event
