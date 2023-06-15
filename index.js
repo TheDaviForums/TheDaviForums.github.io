@@ -16,7 +16,7 @@ const firebaseConfig = {
   var ref = database.ref('members');
 // JavaScript code to handle the click event and show/hide the boxes
 document.addEventListener('DOMContentLoaded', function() {
-    var announcementsBox = document.getElementById('announcements-box');
+     var announcementsBox = document.getElementById('announcements');
     var topicsBox = document.getElementById('topics-box');
     var musicBox = document.getElementById('music-box');
     var suggestionsBox = document.getElementById('suggestions-box');
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
             box.style.display = 'none';
         });
     }
-
+    hideBoxes();
     function setActiveTab(tab) {
         tabs.forEach(function(tab) {
             tab.classList.remove('active');
