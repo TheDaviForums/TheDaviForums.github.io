@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
      var announcementsBox = document.getElementById('announcements');
     var topicsBox = document.getElementById('topics-box');
     var musicBox = document.getElementById('music-box');
-    var suggestionsBox = document.getElementById('suggestions-box');
+    var suggestionsBox = document.getElementById('suggestions');
     var tabs = document.querySelectorAll('.tabs a');
 
     function showBox(box) {
