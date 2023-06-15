@@ -122,6 +122,22 @@
         .tabs a:hover {
             background-color: #666;
         }
+
+        .memebase-window {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            width: 300px;
+            height: 300px;
+            background-color: white;
+            overflow: hidden;
+        }
+
+        .memebase-window iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
     </style>
 </head>
 <body>
@@ -168,7 +184,6 @@
     </div>
 
     <div class="content">
-
         <div id="announcements" class="announcements">
             <h2>Announcements</h2>
             <div id="addAnnouncementButtonContainer" style="display: none;">
@@ -194,26 +209,27 @@
         </div>
 
         <div id="suggestions" class="suggestions">
-    <h2>Suggestions</h2>
-    <div id="addSuggestionButtonContainer">
-        <button id="addSuggestionButton">Add Suggestion</button>
+            <h2>Suggestions</h2>
+            <div id="addSuggestionButtonContainer">
+                <button id="addSuggestionButton">Add Suggestion</button>
+            </div>
+            <div id="suggestionFormContainer" style="display: none;">
+                <input type="text" id="suggestionSubject" placeholder="Subject"><br>
+                <textarea id="suggestionBody" placeholder="Body"></textarea><br>
+                <button id="cancelSuggestionButton">Cancel</button>
+                <button id="submitSuggestionButton">Submit</button>
+            </div>
+        </div>
     </div>
-    <div id="suggestionFormContainer" style="display: none;">
-        <input type="text" id="suggestionSubject" placeholder="Subject"><br>
-        <textarea id="suggestionBody" placeholder="Body"></textarea><br>
-        <button id="cancelSuggestionButton">Cancel</button>
-        <button id="submitSuggestionButton">Submit</button>
-    </div>
-</div>
-
-           
-    </div>
-    </div>
-    
 
     <div class="tiny-text">
         <p class="rainbow-text">YungDavi Is A God</p>
     </div>
+
+    <div class="memebase-window">
+        <iframe src="https://memebase.cheezburger.com/" frameborder="0"></iframe>
+    </div>
+
+    <script src="index.js"></script>
 </body>
-<script src="index.js"></script>
 </html>
