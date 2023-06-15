@@ -16,7 +16,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: background-color 0.3s, color 0.3s;
         }
 
         .header {
@@ -42,52 +41,115 @@
             max-width: 800px;
         }
 
-        /* Rest of the CSS code */
-
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 40px;
-            height: 20px;
-            margin-left: 10px;
+        .forum-post {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #444;
+            border-radius: 10px;
+            flex: 1;
+            margin-right: 10px; /* Added margin */
         }
 
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
+        .forum-post h2 {
+            font-family: Arial, sans-serif;
+            margin-bottom: 10px; /* Added margin */
         }
 
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: 0.4s;
-            border-radius: 20px;
+        .announcements {
+            margin-top: 0; /* Remove the margin-top */
+            padding: 20px;
+            background-color: #444;
+            border-radius: 10px;
+            flex: 1;
         }
 
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 16px;
-            width: 16px;
-            left: 2px;
-            bottom: 2px;
+        .announcements h2 {
+            font-size: 18px;
+            margin-top: 0;
+        }
+
+        .announcements p {
+            font-size: 14px;
+        }
+
+        .tiny-text {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 8px;
+        }
+
+        .rainbow-text {
+            color: white;
+        }
+
+        .community-section {
+            background-color: #777;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .community-section hr {
+            border: none;
+            border-top: 1px solid white;
+            margin-bottom: 10px;
+        }
+
+        .online-users {
+            font-size: 18px;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .tabs a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: #444;
+            margin-right: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .tabs a:hover {
+            background-color: #666;
+        }
+
+        .memebase-window {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            width: 200px;
+            height: 200px;
+            border: 1px solid #ccc;
+            overflow: hidden;
+        }
+
+        .memebase-window iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        body.light-mode {
             background-color: white;
-            transition: 0.4s;
-            border-radius: 50%;
+            color: black;
         }
 
-        input:checked + .slider {
-            background-color: #2196F3;
+        body.light-mode .header a {
+            color: black;
         }
 
-        input:checked + .slider:before {
-            transform: translateX(20px);
+        body.light-mode .memebase-window {
+            border: 1px solid #ccc;
         }
     </style>
 </head>
@@ -99,10 +161,10 @@
             <a href="html/members.html">Members</a>
             <a href="html/about.html">About</a>
             <a href="html/store.html">Store</a>
-            <label class="switch">
-                <input type="checkbox" id="darkModeToggle">
-                <span class="slider"></span>
-            </label>
+            <div class="toggle-container">
+                <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
+                <label for="darkModeToggle" class="toggle-label">Toggle Dark Mode</label>
+            </div>
         </div>
         <div class="header-title">
             <h1>The Davi Forums</h1>
@@ -114,13 +176,13 @@
             </li>
         </div>
     </div>
-    
+
     <div class="content">
         <div class="forum-post">
             <h2>Forum Post</h2>
             <p>Here will be anything related to the forums.</p>
         </div>
-        
+
         <div class="announcements">
             <h2>Announcements</h2>
             <p>Here will be anything new that comes out like music etc...</p>
@@ -139,7 +201,6 @@
     </div>
 
     <div class="content">
-
         <div id="announcements" class="announcements">
             <h2>Announcements</h2>
             <div id="addAnnouncementButtonContainer" style="display: none;">
@@ -152,7 +213,7 @@
                 <button id="submitAnnouncementButton">Submit</button>
             </div>
             <div id="announcementsList"></div>
-        </div>       
+        </div>
 
         <div id="topics-box" class="forum-post" style="display: none;">
             <h2>Topics Box</h2>
@@ -164,39 +225,134 @@
             <p>This is the box for my music.</p>
         </div>
 
-        <div id="suggestions" class="suggestions">
-            <h2>Suggestions</h2>
-            <div id="addSuggestionButtonContainer">
-                <button id="addSuggestionButton">Add Suggestion</button>
-            </div>
-            <div id="suggestionFormContainer" style="display: none;">
-                <input type="text" id="suggestionSubject" placeholder="Subject"><br>
-                <textarea id="suggestionBody" placeholder="Body"></textarea><br>
-                <button id="cancelSuggestionButton">Cancel</button>
-                <button id="submitSuggestionButton">Submit</button>
-            </div>
+        <div id="suggestions-box" class="forum-post" style="display: none;">
+            <h2>Suggestions Box</h2>
+            <p>This is the box for suggestions.</p>
         </div>
     </div>
 
-    <div class="tiny-text">
-        <p class="rainbow-text">YungDavi Is A God</p>
-    </div>
-
     <div class="memebase-window">
-        <iframe id="memeFrame" src="https://imgflip.com/memegenerator" frameborder="0"></iframe>
+        <iframe src="https://www.memebase.com/" frameborder="0"></iframe>
     </div>
-    
-    <script src="index.js"></script>
-    <script>
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const body = document.body;
 
-        darkModeToggle.addEventListener('change', () => {
-            if (darkModeToggle.checked) {
-                body.classList.add('light-mode');
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase.js"></script>
+    <script>
+        // Firebase configuration
+        var firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            databaseURL: "YOUR_DATABASE_URL",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID",
+            measurementId: "YOUR_MEASUREMENT_ID"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        var database = firebase.database();
+
+        // Dark mode toggle functionality
+        var darkModeToggle = document.getElementById('darkModeToggle');
+        var body = document.body;
+        darkModeToggle.addEventListener('change', function () {
+            body.classList.toggle('light-mode');
+        });
+
+        // User authentication
+        var authButton = document.getElementById('authButton');
+        var signOutButtonContainer = document.getElementById('signOutButtonContainer');
+        var myid = document.getElementById('myid');
+        var user;
+
+        function toggleAuthButton() {
+            if (user) {
+                authButton.innerHTML = user.displayName;
+                signOutButtonContainer.style.display = 'inline-block';
             } else {
-                body.classList.remove('light-mode');
+                authButton.innerHTML = 'Sign In';
+                signOutButtonContainer.style.display = 'none';
             }
+        }
+
+        function signOut() {
+            firebase.auth().signOut().then(function () {
+                user = null;
+                toggleAuthButton();
+            }).catch(function (error) {
+                console.error('Sign Out Error', error);
+            });
+        }
+
+        firebase.auth().onAuthStateChanged(function (loggedInUser) {
+            if (loggedInUser) {
+                user = loggedInUser;
+                toggleAuthButton();
+            } else {
+                user = null;
+                toggleAuthButton();
+            }
+        });
+
+        // Online users
+        var onlineUsersRef = database.ref('onlineUsers');
+
+        onlineUsersRef.on('value', function (snapshot) {
+            var onlineUsersCount = snapshot.numChildren();
+            var onlineUsersElement = document.getElementById('onlineUsers');
+            onlineUsersElement.innerHTML = 'Online Users: ' + onlineUsersCount;
+        });
+
+        // Announcements
+        var announcementsRef = database.ref('announcements');
+        var announcementsList = document.getElementById('announcementsList');
+        var addAnnouncementButtonContainer = document.getElementById('addAnnouncementButtonContainer');
+        var announcementFormContainer = document.getElementById('announcementFormContainer');
+        var addAnnouncementButton = document.getElementById('addAnnouncementButton');
+        var cancelAnnouncementButton = document.getElementById('cancelAnnouncementButton');
+        var submitAnnouncementButton = document.getElementById('submitAnnouncementButton');
+        var announcementSubject = document.getElementById('announcementSubject');
+        var announcementBody = document.getElementById('announcementBody');
+
+        addAnnouncementButton.addEventListener('click', function () {
+            addAnnouncementButtonContainer.style.display = 'none';
+            announcementFormContainer.style.display = 'block';
+        });
+
+        cancelAnnouncementButton.addEventListener('click', function () {
+            addAnnouncementButtonContainer.style.display = 'block';
+            announcementFormContainer.style.display = 'none';
+            announcementSubject.value = '';
+            announcementBody.value = '';
+        });
+
+        submitAnnouncementButton.addEventListener('click', function () {
+            var subject = announcementSubject.value;
+            var body = announcementBody.value;
+
+            if (subject.trim() === '' || body.trim() === '') {
+                return;
+            }
+
+            var newAnnouncementRef = announcementsRef.push();
+            newAnnouncementRef.set({
+                subject: subject,
+                body: body
+            });
+
+            announcementSubject.value = '';
+            announcementBody.value = '';
+
+            addAnnouncementButtonContainer.style.display = 'block';
+            announcementFormContainer.style.display = 'none';
+        });
+
+        announcementsRef.on('child_added', function (snapshot) {
+            var announcement = snapshot.val();
+            var announcementElement = document.createElement('div');
+            announcementElement.innerHTML = '<h3>' + announcement.subject + '</h3>' + '<p>' + announcement.body + '</p>';
+            announcementsList.appendChild(announcementElement);
         });
     </script>
 </body>
