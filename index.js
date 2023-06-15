@@ -95,7 +95,7 @@ firebase.auth().onAuthStateChanged(function(user) {
   firebase.database().ref('OnlineUsers/Count').once('value')
   .then(function(snapshot) {
     const count = snapshot.val();
-    document.getElementById('onlineUserCount').textContent = 'Online User Count: ' + count;
+    document.getElementById('onlineUsers').textContent = 'Online User Count: ' + count;
   })
   .catch(function(error) {
     console.log("Error retrieving online user count:", error);
