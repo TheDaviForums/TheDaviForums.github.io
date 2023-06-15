@@ -214,3 +214,48 @@ function signOut(){
   .catch(function(error) {
     console.log("Error retrieving online user count:", error);
   });
+
+  //Start of send a suggestion
+  // Send Us Suggestion button click event
+const sendSuggestionButton = document.getElementById('sendSuggestionButton');
+sendSuggestionButton.addEventListener('click', function() {
+    const suggestionFormContainer = document.getElementById('suggestionFormContainer');
+    suggestionFormContainer.style.display = 'block';
+});
+
+// Cancel Suggestion button click event
+const cancelSuggestionButton = document.getElementById('cancelSuggestionButton');
+cancelSuggestionButton.addEventListener('click', function() {
+    document.getElementById('suggestionSubject').value = ''; // Clear subject field
+    document.getElementById('suggestionBody').value = ''; // Clear body field
+    document.getElementById('suggestionFormContainer').style.display = 'none'; // Hide the form
+});
+
+// Submit Suggestion button click event
+const submitSuggestionButton = document.getElementById('submitSuggestionButton');
+submitSuggestionButton.addEventListener('click', function() {
+    const suggestionSubject = document.getElementById('suggestionSubject').value;
+    const suggestionBody = document.getElementById('suggestionBody').value;
+    
+    if (suggestionSubject.trim() === '' || suggestionBody.trim() === '') {
+        alert('Please fill in both the subject and body fields.');
+        return;
+    }
+    
+    const newSuggestionRef = firebase.database().ref('Suggestions').push();
+    newSuggestionRef.set({
+        subject: suggestionSubject,
+        body: suggestionBody,
+        date: Date.now()
+    }, function(error) {
+        if (error) {
+            console.log('Failed to add suggestion:', error);
+        } else {
+            console.log('Suggestion added successfully!');
+            // Clear the form fields
+            document.getElementById('suggestionSubject').value = '';
+            document.getElementById('suggestionBody').value = '';
+            document.getElementById('suggestionFormContainer').style.display = 'none'; // Hide the form
+        }
+    });
+});
