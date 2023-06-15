@@ -142,7 +142,7 @@ submitAnnouncementButton.addEventListener('click', function() {
 
 // Listen for changes in the announcements and update the UI
 const announcementsList = document.getElementById('announcementsList');
-firebase.database().ref('Announcements').orderByChild('timestamp').on('value', function(snapshot) {
+firebase.database().ref('Announcements').orderByChild('date').on('value', function(snapshot) {
     announcementsList.innerHTML = ''; // Clear the existing announcements
 
     // Create an array to store the announcements
@@ -153,11 +153,10 @@ firebase.database().ref('Announcements').orderByChild('timestamp').on('value', f
         announcements.push(announcement);
     });
 
-   // Sort the announcements array by timestamp in ascending order (oldest first)
-  announcements.sort(function(a, b) {
-    return a.timestamp - b.timestamp;
-  });
-
+    // Sort the announcements array by timestamp in ascending order (oldest first)
+    announcements.sort(function(a, b) {
+        return a.date - b.date;
+    });
 
     // Render the sorted announcements
     announcements.forEach(function(announcement) {
@@ -174,6 +173,7 @@ firebase.database().ref('Announcements').orderByChild('timestamp').on('value', f
         announcementsList.appendChild(announcementElement);
     });
 });
+
 });
 function signOut(){
     firebase.database().ref('OnlineUsers/Count').set(firebase.database.ServerValue.increment(-1));
