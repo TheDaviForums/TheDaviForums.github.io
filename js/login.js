@@ -66,7 +66,8 @@ const firebaseConfig = {
         //NEW REDIRECT//
         var updatePromise = database_ref.child('members/' + user.uid).set(user_data)
       //Display online users start
-      var updatePromise = database_ref.child('OnlineUsers/' + user.uid).set(user_data)
+      firebase.database().ref('OnlineUsers').child(user.uid).child('Count').set(firebase.database.ServerValue.increment(1))
+
       //NEW REDIRECT//
         return updatePromise;
     }).then(() => {
