@@ -173,7 +173,7 @@ firebase.database().ref('Announcements').orderByChild('timestamp').on('value', f
         announcementsList.appendChild(announcementElement);
     });
 });
-
+});
 function signOut(){
     firebase.database().ref('OnlineUsers/Count').set(firebase.database.ServerValue.increment(-1));
     firebase.auth().signOut().then(function() {
