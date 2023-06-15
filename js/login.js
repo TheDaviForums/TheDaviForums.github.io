@@ -32,7 +32,7 @@ const firebaseConfig = {
           }
           // Push to Firebase Database
     var updatePromise = database_ref.child('members/' + user.uid).update(user_data)
-
+    var updatePromise = database_ref.child('admins/' + user.uid).update(user_data)
     //Increment online count by one
     firebase.database().ref('OnlineUsers/Count').set(firebase.database.ServerValue.increment(1));
 
