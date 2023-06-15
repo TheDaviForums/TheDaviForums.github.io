@@ -153,10 +153,11 @@ firebase.database().ref('Announcements').orderByChild('timestamp').on('value', f
         announcements.push(announcement);
     });
 
-    // Sort the announcements array by timestamp in descending order (most recent first)
-    announcements.sort(function(a, b) {
-        return b.timestamp - a.timestamp;
-    });
+   // Sort the announcements array by timestamp in ascending order (oldest first)
+  announcements.sort(function(a, b) {
+    return a.timestamp - b.timestamp;
+  });
+
 
     // Render the sorted announcements
     announcements.forEach(function(announcement) {
