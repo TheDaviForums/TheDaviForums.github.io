@@ -40,52 +40,21 @@ document.addEventListener('DOMContentLoaded', function() {
         tab.classList.add('active');
     }
 
-     // JavaScript code for switching between boxes
-    const announcementsBox = document.querySelector('.announcements');
-    const topicsBox = document.getElementById('topics-box');
-    const musicBox = document.getElementById('music-box');
-    const suggestionsBox = document.getElementById('suggestions-box');
-
-    function switchToAnnouncements() {
-        announcementsBox.style.display = 'block';
-        topicsBox.style.display = 'none';
-        musicBox.style.display = 'none';
-        suggestionsBox.style.display = 'none';
+    function handleTabClick(event) {
+        event.preventDefault();
+        var clickedTab = event.target;
+        hideBoxes();
+        setActiveTab(clickedTab);
+        if (clickedTab.getAttribute('href') === '#announcements') {
+            showBox(announcementsBox);
+        } else if (clickedTab.getAttribute('href') === '#topics') {
+            showBox(topicsBox);
+        } else if (clickedTab.getAttribute('href') === '#music') {
+            showBox(musicBox);
+        } else if (clickedTab.getAttribute('href') === '#suggestions') {
+            showBox(suggestionsBox);
+        }
     }
-
-    function switchToTopics() {
-        announcementsBox.style.display = 'none';
-        topicsBox.style.display = 'block';
-        musicBox.style.display = 'none';
-        suggestionsBox.style.display = 'none';
-    }
-
-    function switchToMusic() {
-        announcementsBox.style.display = 'none';
-        topicsBox.style.display = 'none';
-        musicBox.style.display = 'block';
-        suggestionsBox.style.display = 'none';
-    }
-
-    function switchToSuggestions() {
-        announcementsBox.style.display = 'none';
-        topicsBox.style.display = 'none';
-        musicBox.style.display = 'none';
-        suggestionsBox.style.display = 'block';
-    }
-
-    // Example event listeners to switch between boxes
-    const announcementsButton = document.getElementById('announcementsButton');
-    announcementsButton.addEventListener('click', switchToAnnouncements);
-
-    const topicsButton = document.getElementById('topicsButton');
-    topicsButton.addEventListener('click', switchToTopics);
-
-    const musicButton = document.getElementById('musicButton');
-    musicButton.addEventListener('click', switchToMusic);
-
-    const suggestionsButton = document.getElementById('suggestionsButton');
-    suggestionsButton.addEventListener('click', switchToSuggestions);
 
     tabs.forEach(function(tab) {
         tab.addEventListener('click', handleTabClick);
