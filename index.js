@@ -154,7 +154,7 @@ submitAnnouncementButton.addEventListener('click', function() {
         return;
     }
     
-    const newAnnouncementRef = firebase.database().ref('announcements').push();
+    const newAnnouncementRef = firebase.database().ref('Announcements').push();
     newAnnouncementRef.set({
         subject: announcementSubject,
         body: announcementBody
