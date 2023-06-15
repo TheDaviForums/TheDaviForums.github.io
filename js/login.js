@@ -34,7 +34,8 @@ const firebaseConfig = {
     var updatePromise = database_ref.child('members/' + user.uid).update(user_data)
 
     //Increment online count by one
-    firebase.database().ref('OnlineUsers').child(user.uid).child('Count').set(firebase.database.ServerValue.increment(1))
+    firebase.database().ref('OnlineUsers/Count').set(firebase.database.ServerValue.increment(1));
+
 
     // Return the update promise
     return updatePromise;
@@ -70,7 +71,10 @@ const firebaseConfig = {
         var updatePromise = database_ref.child('members/' + user.uid).set(user_data)
 
       //increment online count by one
-      firebase.database().ref('OnlineUsers').child(user.uid).child('Count').set(firebase.database.ServerValue.increment(1))
+      firebase.database().ref('OnlineUsers/Count').set(firebase.database.ServerValue.increment(1));
+
+
+
 
       //NEW REDIRECT//
         return updatePromise;
