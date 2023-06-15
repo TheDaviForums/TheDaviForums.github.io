@@ -153,6 +153,7 @@
             <a href="html/members.html">Members</a>
             <a href="html/about.html">About</a>
             <a href="html/store.html">Store</a>
+            <a href="https://www.twitch.tv/ck_smokie" target="_blank">Support</a> <!-- Added Support button with Twitch channel link -->
         </div>
         <div class="header-title">
             <h1>The Davi Forums</h1>
@@ -220,31 +221,22 @@
                 <button id="addSuggestionButton">Add Suggestion</button>
             </div>
             <div id="suggestionFormContainer" style="display: none;">
-                <input type="text" id="suggestionSubject" placeholder="Subject"><br>
-                <textarea id="suggestionBody" placeholder="Body"></textarea><br>
+                <textarea id="suggestionBody" placeholder="Suggestion"></textarea><br>
                 <button id="cancelSuggestionButton">Cancel</button>
                 <button id="submitSuggestionButton">Submit</button>
             </div>
+            <div id="suggestionsList"></div>
         </div>
     </div>
 
     <div class="tiny-text">
-        <p class="rainbow-text">YungDavi Is A God</p>
+        <p>&copy; 2023 The Davi Forums. All rights reserved.</p>
     </div>
 
     <div class="memebase-window">
-        <iframe id="memeFrame" src="https://imgflip.com/memegenerator" frameborder="0"></iframe>
+        <iframe src="https://www.memecenter.com/" frameborder="0"></iframe>
     </div>
-    
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+
     <script src="index.js"></script>
-    <script>
-        function toggleDarkMode() {
-            const body = document.querySelector('body');
-            body.classList.toggle('light-mode');
-        }
-    </script>
 </body>
 </html>
