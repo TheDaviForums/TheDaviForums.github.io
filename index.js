@@ -215,10 +215,10 @@ function signOut(){
     console.log("Error retrieving online user count:", error);
   });
 
-  //Start of send a suggestion
-// Send Us Suggestion button click event
-const sendSuggestionButton = document.getElementById('sendSuggestionButton');
-sendSuggestionButton.addEventListener('click', function() {
+ // Start of send a suggestion
+// Add Suggestion button click event
+const addSuggestionButton = document.getElementById('addSuggestionButton');
+addSuggestionButton.addEventListener('click', function() {
     const suggestionFormContainer = document.getElementById('suggestionFormContainer');
     suggestionFormContainer.style.display = 'block';
 });
