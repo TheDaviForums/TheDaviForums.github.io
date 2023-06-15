@@ -165,7 +165,8 @@ submitAnnouncementButton.addEventListener('click', function() {
     const newAnnouncementRef = firebase.database().ref('Announcements').push();
     newAnnouncementRef.set({
         subject: announcementSubject,
-        body: announcementBody
+        body: announcementBody,
+        date: Date.now()
     }, function(error) {
         if (error) {
             console.log('Failed to add announcement:', error);
@@ -181,11 +182,24 @@ submitAnnouncementButton.addEventListener('click', function() {
 
 // Listen for changes in the announcements and update the UI
 const announcementsList = document.getElementById('announcementsList');
-firebase.database().ref('announcements').on('value', function(snapshot) {
+firebase.database().ref('Announcements').orderByChild('timestamp').on('value', function(snapshot) {
     announcementsList.innerHTML = ''; // Clear the existing announcements
-    
+
+    // Create an array to store the announcements
+    const announcements = [];
+
     snapshot.forEach(function(childSnapshot) {
         const announcement = childSnapshot.val();
+        announcements.push(announcement);
+    });
+
+    // Sort the announcements array by timestamp in descending order (most recent first)
+    announcements.sort(function(a, b) {
+        return b.timestamp - a.timestamp;
+    });
+
+    // Render the sorted announcements
+    announcements.forEach(function(announcement) {
         const announcementElement = document.createElement('div');
         announcementElement.innerHTML = `<h3>${announcement.subject}</h3><p>${announcement.body}</p>`;
         announcementsList.appendChild(announcementElement);
