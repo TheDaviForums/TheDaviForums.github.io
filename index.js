@@ -216,7 +216,7 @@ function signOut(){
   });
 
   //Start of send a suggestion
-  // Send Us Suggestion button click event
+// Send Us Suggestion button click event
 const sendSuggestionButton = document.getElementById('sendSuggestionButton');
 sendSuggestionButton.addEventListener('click', function() {
     const suggestionFormContainer = document.getElementById('suggestionFormContainer');
