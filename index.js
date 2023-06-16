@@ -404,6 +404,60 @@ if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
   } else {
     console.log('Speech recognition not supported');
   }
+  // Function to speak the given text using the Web Speech API
+function speak(text) {
+    const synth = window.speechSynthesis;
+    const utterance = new SpeechSynthesisUtterance(text);
+    synth.speak(utterance);
+  }
+  
+  // Function to enable voice chat functionality
+  function enableVoiceChat() {
+    const voiceChatButton = document.getElementById('voiceChatButton');
+  
+    // Check if the browser supports the SpeechRecognition API
+    if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+      const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+      const recognition = new SpeechRecognition();
+  
+      // Start listening when the voice chat button is clicked
+      voiceChatButton.addEventListener('click', function () {
+        recognition.start();
+      });
+  
+      // Handle the recognition result
+      recognition.addEventListener('result', function (event) {
+        const transcript = event.results[0][0].transcript;
+        const textInput = document.activeElement;
+  
+        // If there is an active text input element, insert the transcript
+        if (textInput && textInput.tagName === 'INPUT') {
+          const startPosition = textInput.selectionStart;
+          const endPosition = textInput.selectionEnd;
+          textInput.value =
+            textInput.value.substring(0, startPosition) +
+            transcript +
+            textInput.value.substring(endPosition);
+        } else {
+          // Otherwise, speak the transcript
+          speak(transcript);
+        }
+      });
+  
+      // Stop listening when the voice recognition ends
+      recognition.addEventListener('end', function () {
+        recognition.stop();
+      });
+    } else {
+      // SpeechRecognition API is not supported
+      voiceChatButton.style.display = 'none';
+      console.log('SpeechRecognition API is not supported in this browser.');
+    }
+  }
+  
+  // Call the enableVoiceChat function to enable voice chat functionality
+  enableVoiceChat();
   
 });
 });
