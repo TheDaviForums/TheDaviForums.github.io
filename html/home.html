@@ -28,8 +28,6 @@
         
         .content-container {
             display: flex;
-            justify-content: center;
-            align-items: center;
             width: 100%;
         }
         
@@ -59,7 +57,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            width: 80%;
+            width: 60%;
         }
     </style>
 </head>
@@ -86,18 +84,14 @@
     </div>
 
     <div class="content-container">
-        <div class="announcements">
-            <h2>Announcements</h2>
-            <div id="announcementsList"></div>
+        <div class="gif-container">
+            <!-- Replace the src attribute value with the direct URL of your GIF -->
+            <img src="/pics/giphy.gif" alt="Your GIF">
         </div>
         <div class="about-me">
             <h2>About Me (YungDavi)</h2>
             <div class="line"></div>
             <p>Write something about yourself here.</p>
-        </div>
-        <div class="gif-container">
-            <!-- Replace the src attribute value with the direct URL of your GIF -->
-            <img src="/pics/giphy.gif" alt="Your GIF">
         </div>
     </div>
 
@@ -105,14 +99,14 @@
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
     <script>
         const firebaseConfig = {
-            apiKey: "<YOUR_API_KEY>",
-            authDomain: "<YOUR_AUTH_DOMAIN>",
-            databaseURL: "<YOUR_DATABASE_URL>",
-            projectId: "<YOUR_PROJECT_ID>",
-            storageBucket: "<YOUR_STORAGE_BUCKET>",
-            messagingSenderId: "<YOUR_MESSAGING_SENDER_ID>",
-            appId: "<YOUR_APP_ID>",
-            measurementId: "<YOUR_MEASUREMENT_ID>"
+            apiKey: "AIzaSyA0lgyqDkVdCJrC0u6T1_mv9jIJZDDvxDw",
+    authDomain: "thedaviforums.firebaseapp.com",
+    databaseURL: "https://thedaviforums-default-rtdb.firebaseio.com",
+    projectId: "thedaviforums",
+    storageBucket: "thedaviforums.appspot.com",
+    messagingSenderId: "208690814999",
+    appId: "1:208690814999:web:d1d48bbe6028debbc4bc52",
+    measurementId: "G-FM0NSTQLXQ"
         };
 
         // Initialize Firebase
