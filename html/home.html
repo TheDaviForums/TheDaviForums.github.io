@@ -96,6 +96,7 @@
     appId: "1:208690814999:web:d1d48bbe6028debbc4bc52",
     measurementId: "G-FM0NSTQLXQ"
         };
+
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         firebase.auth().onAuthStateChanged(function(user) {
@@ -122,6 +123,34 @@
                 // An error happened.
             });
         }
+
+        // Update the function to display announcements
+        function displayAnnouncements() {
+            const announcementsList = document.getElementById('announcementsList');
+
+            // Assuming you have an array of announcements
+            const announcements = [
+                { title: "Announcement 1", content: "This is the first announcement." },
+                { title: "Announcement 2", content: "This is the second announcement." },
+                { title: "Announcement 3", content: "This is the third announcement." }
+            ];
+
+            // Clear any existing announcements
+            announcementsList.innerHTML = '';
+
+            // Iterate over the announcements array and create announcement elements
+            announcements.forEach((announcement) => {
+                const announcementElement = document.createElement('div');
+                announcementElement.innerHTML = `
+                    <h3>${announcement.title}</h3>
+                    <p>${announcement.content}</p>
+                `;
+                announcementsList.appendChild(announcementElement);
+            });
+        }
+
+        // Call the displayAnnouncements function to show the announcements
+        displayAnnouncements();
     </script>
 </body>
 </html>
