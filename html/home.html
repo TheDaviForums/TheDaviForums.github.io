@@ -50,7 +50,7 @@
         </div>
         <div class="right-menu">
             <li style="display: flex; align-items: center;">
-                <a href="/content/login.html" id="authButton"><span id="myid">Login/Sign Up</span></a>
+                <a href="#" id="authButton"><span id="myid">Login/Sign Up</span></a>
                 <span id="signOutButtonContainer" style="display: none; margin-left: 10px;"><a onclick="signOut()">Sign Out</a></span>
             </li>
         </div>
@@ -61,6 +61,8 @@
         <img src="/pics/giphy.gif" alt="Your GIF">
     </div>
 
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyA0lgyqDkVdCJrC0u6T1_mv9jIJZDDvxDw",
@@ -83,11 +85,11 @@
                 const email = user.email;
                 // Set the HTML content of the span element to the user's email.
                 userIdElement.innerHTML = email;
-                signOutButtonContainer.style.display = 'inline'; // Show the sign out button when user is logged in
+                signOutButtonContainer.style.display = 'inline'; // Show the sign out button when the user is logged in
             } else {
                 // If no user is signed in, display "Login/Sign Up" as the user ID.
                 userIdElement.innerHTML = 'Login/Sign Up';
-                signOutButtonContainer.style.display = 'none'; // Hide the sign out button when user is not logged in
+                signOutButtonContainer.style.display = 'none'; // Hide the sign out button when the user is not logged in
             }
         });
 
