@@ -190,12 +190,23 @@
             <li style="display: flex; align-items: center;">
                 <a href="#" id="authButton"><span id="myid"></span></a>
                 <span id="signOutButtonContainer" style="display: none; margin-left: 10px;"><a onclick="signOut()">Sign Out</a></span>
+            </li>
+        </div>
+    </div>
+    
+    <div class="content">
+        <div class="forum-post">
+            <h2>Forum Post</h2>
+            <p>Here will be anything related to the forums.</p>
                 <li style="display: flex; align-items: center;">
                     <a href="#" id="voiceChatButton"><span id="voiceChatIcon">&#128265;</span></a>
                 </li>
             </div>
         </div>
         
+        <div class="announcements">
+            <h2>Announcements</h2>
+            <p>Here will be anything new that comes out like music etc...</p>
         <div class="content">
             <div class="forum-post">
                 <h2>Forum Post</h2>
@@ -207,6 +218,7 @@
                 <p>Here will be anything new that comes out like music etc...</p>
             </div>
         </div>
+    </div>
 
         <div class="community-section">
             <div class="tabs">
@@ -248,7 +260,13 @@
                 </div>
                 <div id="topicsContainer"></div>
             </div>
+            <div id="announcementsList"></div>
+        </div>  
     
+        <div id="topics-box" class="forum-post" style="display: none;">
+            <h2>Topics Box</h2>
+            <div id="addTopicButtonContainer">
+                <button id="addTopicButton">Add Topic</button>
             <div id="music" class="forum-post">
                 <h2>My Music</h2>
                 <div id="addMusicButtonContainer" style="display: none;">
@@ -262,7 +280,11 @@
                 </div>
                 <div id="musicContainer"></div>
             </div>
-    
+            <div id="topicFormContainer" style="display: none;">
+                <input type="text" id="topicSubject" placeholder="Subject"><br>
+                <textarea id="topicBody" placeholder="Body"></textarea><br>
+                <button id="cancelTopicButton">Cancel</button>
+                <button id="submitTopicButton">Submit</button>
             <div id="suggestions" class="forum-post">
                 <h2>Suggestions</h2>
                 <div id="addSuggestionButtonContainer" style="display: none;">
@@ -276,13 +298,31 @@
                 </div>
                 <div id="suggestionsContainer"></div>
             </div>
-    
+            <div id="topicsList"></div>
         </div>
 
+
+        <div id="music-box" class="forum-post" style="display: none;">
+            <h2>My Music Box</h2>
+            <p>This is the box for my music.</p>
+        </div>
+     
+        <div id="suggestions" class="suggestions">
+            <h2>Suggestions</h2>
+        <div id="addSuggestionButtonContainer">
+            <button id="addSuggestionButton">Add Suggestion</button>
+        </div>
+        <div id="suggestionFormContainer" style="display: none;">
+            <input type="text" id="suggestionSubject" placeholder="Subject"><br>
+            <textarea id="suggestionBody" placeholder="Body"></textarea><br>
+            <button id="cancelSuggestionButton">Cancel</button>
+            <button id="submitSuggestionButton">Submit</button>
         <div class="tiny-text">
             Created by Davi<br>
             Version 1.0
         </div>
+    </div>
+    </div>
 
         <div class="memebase-window">
             <iframe src="https://cheezburger.com/" frameborder="0"></iframe>
