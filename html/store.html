@@ -1,0 +1,120 @@
+
+<!--Login Stuff-->
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Login / Sign Up Form</title>
+    <link rel="shortcut icon" href="/assets/favicon.ico">
+    <link rel="stylesheet" href="/css/login.css">
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <style>
+        /* Center the list */
+        #list-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        ul {
+            width: 20%;
+            text-align: center;
+            overflow-y: scroll;
+            height: 1px;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            border: 0.0625em solid white;
+            padding: 0.3125em;
+            font-size: 1.5em;
+        }
+
+        @media screen and (max-width: 600px) {
+            ul {
+                width: 100%;
+                float: right;
+                text-align: center;
+            }
+
+            li {
+                font-size: 0.5em;
+                min-width: 1.2em;
+            }
+        }
+    </style>
+</head>
+
+<!--Login Form-->
+<body>
+    <nav class="navbar">
+        <div class="brand-title">The Davi Forums</div>
+
+        <!--Creating the hamburger button-->
+        <a href="#" class="toggle-button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </a>
+        <!--Hamburger button above ^^^^^^^^^^^^^^^-->
+        <div class="navbar-links">
+            <ul>
+                <a href="https://thedaviforums.github.io/html/home.html">Home</a>
+                <a href="https://thedaviforums.github.io/">Forums</a>
+                <a href="https://thedaviforums.github.io/html/members.html">Members</a>
+                <a href="https://thedaviforums.github.io/html/about.html">About</a>
+                <a href="https://thedaviforums.github.io/html/store.html">Store</a>
+                <a href="https://www.twitch.tv/ck_smokie" target="_blank">Support</a>
+                <a href="https://discord.gg/ed8Sn5fA" target="_blank">Discord</a> <!-- Added Discord button with Discord server link -->
+            </ul>
+        </div>
+
+        <!-- Start of the leaderboard -->
+        <title>User Points</title>
+    </nav>
+    <div id="list-container">
+        <ul id="membersList"></ul>
+    </div>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            databaseURL: "YOUR_DATABASE_URL",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID",
+            measurementId: "YOUR_MEASUREMENT_ID"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Create a reference to the database
+        var database = firebase.database();
+        var ref = database.ref('members');
+
+        ref.once('value', function(snapshot) {
+            // Get the data as an object
+            var data = snapshot.val();
+
+            // Convert the data object into an array of members
+            var membersArray = Object.values(data);
+
+            // Create a list of members
+            var membersList = document.getElementById('membersList');
+
+            membersArray.forEach(function(member) {
+                var listItem = document.createElement('li');
+                listItem.textContent = member;
+                membersList.appendChild(listItem);
+            });
+        });
+    </script>
+</body>
