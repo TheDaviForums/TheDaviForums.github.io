@@ -458,6 +458,36 @@ function speak(text) {
   
   // Call the enableVoiceChat function to enable voice chat functionality
   enableVoiceChat();
-  
+// Get references to the HTML elements
+const startBtn = document.getElementById('start-btn');
+const stopBtn = document.getElementById('stop-btn');
+const transcriptionDiv = document.getElementById('transcription');
+
+// Create a SpeechRecognition object
+const recognition = new webkitSpeechRecognition();
+
+// Set properties for the recognition
+recognition.continuous = true; // Continuous listening
+recognition.interimResults = true; // Show interim results
+
+// Event listener for the start button
+startBtn.addEventListener('click', () => {
+  recognition.start();
+});
+
+// Event listener for the stop button
+stopBtn.addEventListener('click', () => {
+  recognition.stop();
+});
+
+// Event listener for receiving speech recognition results
+recognition.addEventListener('result', (event) => {
+  const transcript = Array.from(event.results)
+    .map((result) => result[0].transcript)
+    .join('');
+
+  // Display the transcription in the HTML element
+  transcriptionDiv.textContent = transcript;
+
 });
 });
