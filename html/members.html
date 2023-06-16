@@ -48,7 +48,6 @@
     </style>
 </head>
 
-<!--Login Form-->
 <body>
     <nav class="navbar">
         <div class="brand-title">The Davi Forums</div>
@@ -96,43 +95,31 @@
         var database = firebase.database();
         var ref = database.ref('members');
 
-        ref.once('value', function(snapshot) {
-            // Get the data as an object
-            var data = snapshot.val();
-
-            // Convert the data object into an array of members
-            var membersArray = Object.values(data);
-
-            // Create a list of members
-            var membersList = document.getElementById('membersList');
-
-            membersArray.forEach(function(member) {
-                var listItem = document.createElement('li');
-                listItem.textContent = member;
-                membersList.appendChild(listItem);
-            });
-        });
-
-        // Add logout event listener
-        document.getElementById('signOutButtonContainer').addEventListener('click', () => {
-            firebase.auth().signOut().then(() => {
-                // Sign-out successful
-            }).catch((error) => {
-                // An error happened
-                console.log(error);
-            });
-        });
-
-        // Check if user is signed in
+        // Fetch user data from Firebase Authentication
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 // User is signed in
-                userIdElement.innerHTML = user.displayName;
-                signOutButtonContainer.style.display = 'inline'; // Show the sign out button when the user is logged in
-            } else {
-                // If no user is signed in, display "Login/Sign Up" as the user ID.
-                userIdElement.innerHTML = 'Login/Sign Up';
-                signOutButtonContainer.style.display = 'none'; // Hide the sign out button when the user is not logged in
+                var userRef = ref.child(user.uid);
+                userRef.set(user.displayName);
+
+                // Retrieve all members from the database
+                ref.once('value', function(snapshot) {
+                    // Get the data as an object
+                    var data = snapshot.val();
+
+                    // Convert the data object into an array of members
+                    var membersArray = Object.values(data);
+
+                    // Create a list of members
+                    var membersList = document.getElementById('membersList');
+                    membersList.innerHTML = ""; // Clear the list before populating
+
+                    membersArray.forEach(function(member) {
+                        var listItem = document.createElement('li');
+                        listItem.textContent = member;
+                        membersList.appendChild(listItem);
+                    });
+                });
             }
         });
     </script>
