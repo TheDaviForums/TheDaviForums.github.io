@@ -259,3 +259,93 @@ submitSuggestionButton.addEventListener('click', function() {
         }
     });
 });
+// Start of topics
+// Add Topic button click event
+const addTopicButton = document.getElementById('addTopicButton');
+addTopicButton.addEventListener('click', function() {
+    const topicFormContainer = document.getElementById('topicFormContainer');
+    topicFormContainer.style.display = 'block';
+});
+
+// Cancel Topic button click event
+const cancelTopicButton = document.getElementById('cancelTopicButton');
+cancelTopicButton.addEventListener('click', function() {
+    document.getElementById('topicSubject').value = ''; // Clear subject field
+    document.getElementById('topicBody').value = ''; // Clear body field
+    document.getElementById('topicFormContainer').style.display = 'none'; // Hide the form
+});
+
+// Submit Topic button click event
+const submitTopicButton = document.getElementById('submitTopicButton');
+submitTopicButton.addEventListener('click', function() {
+    const topicSubject = document.getElementById('topicSubject').value;
+    const topicBody = document.getElementById('topicBody').value;
+
+    if (topicSubject.trim() === '' || topicBody.trim() === '') {
+        alert('Please fill in both the subject and body fields.');
+        return;
+    }
+
+    const newTopicRef = firebase.database().ref('Topics').push();
+    newTopicRef.set({
+        subject: topicSubject,
+        body: topicBody,
+        date: Date.now()
+    }, function(error) {
+        if (error) {
+            console.log('Failed to add topic:', error);
+        } else {
+            console.log('Topic added successfully!');
+            // Clear the form fields
+            document.getElementById('topicSubject').value = '';
+            document.getElementById('topicBody').value = '';
+            document.getElementById('topicFormContainer').style.display = 'none'; // Hide the form
+        }
+    });
+});
+
+// Listen for changes in the topics and update the UI
+const topicsList = document.getElementById('topicsList');
+firebase.database().ref('Topics').orderByChild('date').on('value', function(snapshot) {
+    topicsList.innerHTML = ''; // Clear the existing topics
+
+    // Create an array to store the topics
+    const topics = [];
+
+    snapshot.forEach(function(childSnapshot) {
+        const topic = childSnapshot.val();
+        topics.push({ key: childSnapshot.key, ...topic });
+    });
+
+    // Sort the topics array by timestamp in ascending order (oldest first)
+    topics.sort(function(a, b) {
+        return a.date - b.date;
+    });
+
+    // Render the sorted topics
+    topics.forEach(function(topic) {
+        const topicElement = document.createElement('div');
+        topicElement.classList.add('topic-box'); // Add the 'topic-box' class
+
+        // Create the HTML structure for the topic subject
+        const topicSubjectHTML = `
+            <h3>${topic.subject}</h3>
+        `;
+
+        topicElement.innerHTML = topicSubjectHTML;
+        topicsList.appendChild(topicElement);
+    });
+
+        // Add click event listener to expand/collapse topic body.
+// Start of topics
+
+// ... (previous code)
+
+// Add click event listener to expand/collapse topic body
+topicsList.addEventListener('click', function(event) {
+    const topicElement = event.target.closest('.topic-box');
+    if (topicElement) {
+        const topicBody = topicElement.querySelector('.topic-body');
+        topicBody.classList.toggle('expanded');
+    }
+});

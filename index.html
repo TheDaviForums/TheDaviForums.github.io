@@ -224,8 +224,18 @@
     
         <div id="topics-box" class="forum-post" style="display: none;">
             <h2>Topics Box</h2>
-            <p>This is the box for topics.</p>
+            <div id="addTopicButtonContainer">
+                <button id="addTopicButton">Add Topic</button>
+            </div>
+            <div id="topicFormContainer" style="display: none;">
+                <input type="text" id="topicSubject" placeholder="Subject"><br>
+                <textarea id="topicBody" placeholder="Body"></textarea><br>
+                <button id="cancelTopicButton">Cancel</button>
+                <button id="submitTopicButton">Submit</button>
+            </div>
+            <div id="topicsList"></div>
         </div>
+        
 
         <div id="music-box" class="forum-post" style="display: none;">
             <h2>My Music Box</h2>

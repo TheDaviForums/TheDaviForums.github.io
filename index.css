@@ -10,3 +10,12 @@
     border-radius: 10px;
     flex: 1;
 }
+/* Add this CSS code to your stylesheet */
+
+.topic-body {
+    display: none;
+}
+
+.topic-body.expanded {
+    display: block;
+}
