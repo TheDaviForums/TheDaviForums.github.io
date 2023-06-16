@@ -113,38 +113,6 @@
         });
     </script>
 
-    <script>
-        // Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyA0lgyqDkVdCJrC0u6T1_mv9jIJZDDvxDw",
-    authDomain: "thedaviforums.firebaseapp.com",
-    databaseURL: "https://thedaviforums-default-rtdb.firebaseio.com",
-    projectId: "thedaviforums",
-    storageBucket: "thedaviforums.appspot.com",
-    messagingSenderId: "208690814999",
-    appId: "1:208690814999:web:d1d48bbe6028debbc4bc52",
-    measurementId: "G-FM0NSTQLXQ"
-        };
-
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-
-        // DOM elements
-        const userIdElement = document.getElementById('myid');
-        const signOutButtonContainer = document.getElementById('signOutButtonContainer');
-
-        // Add login event listener
-        document.getElementById('authButton').addEventListener('click', () => {
-            const provider = new firebase.auth.GoogleAuthProvider();
-            firebase.auth().signInWithPopup(provider).then((result) => {
-                // The signed-in user info
-                const user = result.user;
-                userIdElement.innerHTML = user.displayName;
-            }).catch((error) => {
-                // Handle errors here
-                console.log(error);
-            });
-        });
 
         // Add logout event listener
         document.getElementById('signOutButtonContainer').addEventListener('click', () => {
