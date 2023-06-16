@@ -127,7 +127,7 @@
         // Retrieve the announcements data from Firebase
         firebase
           .database()
-          .ref('announcements')
+          .ref('Announcements') // Updated reference to 'Announcements'
           .once('value')
           .then((snapshot) => {
             const announcements = snapshot.val();
