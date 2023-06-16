@@ -84,7 +84,7 @@
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyA0lgyqDkVdCJrC0u6T1_mv9jIJZDDvxDw",
@@ -124,35 +124,33 @@
             });
         }
 
-        // Retrieve the announcements data from Firebase
-        firebase
-          .database()
-          .ref('Announcements') // Updated reference to 'Announcements'
-          .once('value')
-          .then((snapshot) => {
-            const announcements = snapshot.val();
+        // Update the function to display announcements
+        function displayAnnouncements() {
             const announcementsList = document.getElementById('announcementsList');
+
+            // Assuming you have an array of announcements
+            const announcements = [
+                { title: "Announcement 1", content: "This is the first announcement." },
+                { title: "Announcement 2", content: "This is the second announcement." },
+                { title: "Announcement 3", content: "This is the third announcement." }
+            ];
 
             // Clear any existing announcements
             announcementsList.innerHTML = '';
 
-            // Iterate over the announcements and create announcement elements
-            for (const key in announcements) {
-              if (announcements.hasOwnProperty(key)) {
-                const announcement = announcements[key];
-
+            // Iterate over the announcements array and create announcement elements
+            announcements.forEach((announcement) => {
                 const announcementElement = document.createElement('div');
                 announcementElement.innerHTML = `
-                  <h3>${announcement.title}</h3>
-                  <p>${announcement.content}</p>
+                    <h3>${announcement.title}</h3>
+                    <p>${announcement.content}</p>
                 `;
                 announcementsList.appendChild(announcementElement);
-              }
-            }
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+            });
+        }
+
+        // Call the displayAnnouncements function to show the announcements
+        displayAnnouncements();
     </script>
 </body>
 </html>
