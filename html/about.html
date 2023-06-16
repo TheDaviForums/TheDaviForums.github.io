@@ -1,6 +1,7 @@
 <!DOCTYPE html>
+<html>
 <head>
-    <meta name ="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <title>Login / Sign Up Form</title>
     <link rel="shortcut icon" href="/assets/favicon.ico">
@@ -8,44 +9,42 @@
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
-  </head>
+</head>
 
-  <!--Login Form-->
-  <body>
+<body>
     <nav class="navbar">
         <div class="brand-title">The Davi Forums</div>
 
-        <!--Creating the hamburger button-->
+        <!-- Creating the hamburger button -->
         <a href="#" class="toggle-button">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
         </a>
-        <!--Hamburger button above ^^^^^^^^^^^^^^^-->
+        <!-- Hamburger button above ^^^^^^^^^^^^^^^ -->
         <div class="header">
             <div class="left-menu">
                 <a href="https://thedaviforums.github.io/html/home.html">Home</a>
                 <a href="https://thedaviforums.github.io/">Forums</a>
-                <a href="html/members.html">Members</a>
-                <a href="html/about.html">About</a>
-                <a href="html/store.html">Store</a>
+                <a href="https://thedaviforums.github.io/html/members.html">Members</a>
+                <a href="https://thedaviforums.github.io/html/about.html">About</a>
+                <a href="https://thedaviforums.github.io/html/store.html">Store</a>
                 <a href="https://www.twitch.tv/ck_smokie" target="_blank">Support</a>
-                <a href="https://discord.gg/ed8Sn5fA" target="_blank">Discord</a> <!-- Added Discord button with Discord server link -->
+                <a href="https://discord.gg/ed8Sn5fA" target="_blank">Discord</a>
             </div>
             <div class="header-title">
                 <h1>The Davi Forums</h1>
             </div>
             <div class="right-menu">
                 <li style="display: flex; align-items: center;">
-                    <a href="#" id="authButton"><span id="myid"></span></a>
+                    <a href="/content/login.html" id="authButton"><span id="myid">Login/Sign Up</span></a>
                     <span id="signOutButtonContainer" style="display: none; margin-left: 10px;"><a onclick="signOut()">Sign Out</a></span>
                 </li>
             </div>
         </div>
-
     </nav>
-    <!--Changed variable names so that they're more descriptive-->
+
     <div class="main-container">
         <div class="about-container">
             <div class="title-container">
@@ -60,41 +59,52 @@
             </div>
         </div>
     </div>
-    <script src="../js/about.js" defer></script> <!--Allows code to load before Javascript comes in-->
+
+    <script src="../js/about.js" defer></script>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyA0lgyqDkVdCJrC0u6T1_mv9jIJZDDvxDw",
+    authDomain: "thedaviforums.firebaseapp.com",
+    databaseURL: "https://thedaviforums-default-rtdb.firebaseio.com",
+    projectId: "thedaviforums",
+    storageBucket: "thedaviforums.appspot.com",
+    messagingSenderId: "208690814999",
+    appId: "1:208690814999:web:d1d48bbe6028debbc4bc52",
+    measurementId: "G-FM0NSTQLXQ"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.auth().onAuthStateChanged(function(user) {
+            const userIdElement = document.getElementById('myid');
+            const signOutButtonContainer = document.getElementById('signOutButtonContainer');
+            // Check if there is a current user signed in.
+            if (user) {
+                // Get the user's email.
+                const email = user.email;
+                // Set the HTML content of the span element to the user's email.
+                userIdElement.innerHTML = email;
+                signOutButtonContainer.style.display = 'inline'; // Show the sign out button when user is logged in
+            } else {
+                // If no user is signed in, display "Login/Sign Up" as the user ID.
+                userIdElement.innerHTML = 'Login/Sign Up';
+                signOutButtonContainer.style.display = 'none'; // Hide the sign out button when user is not logged in
+                // Add a click event listener to the authButton
+                const authButton = document.getElementById('authButton');
+                authButton.addEventListener('click', function() {
+                    // Redirect to your login page
+                    window.location.href = '/content/login.html';
+                });
+            }
+        });
+
+        function signOut() {
+            firebase.auth().signOut().then(function() {
+                // Sign-out successful.
+            }).catch(function(error) {
+                // An error happened.
+            });
+        }
+    </script>
 </body>
 </html>
-<script>
-      const firebaseConfig = {
-  apiKey: "AIzaSyAFvVTARYzQrWvE9OXCTY3JV3o9SxHbJ7U",
-  authDomain: "mean-green-deal-726f9.firebaseapp.com",
-  projectId: "mean-green-deal-726f9",
-  storageBucket: "mean-green-deal-726f9.appspot.com",
-  messagingSenderId: "747867835951",
-  appId: "1:747867835951:web:084db4a1feb703eafe00da",
-  measurementId: "G-2QKNB5QXF4"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-firebase.auth().onAuthStateChanged(function(user) {
-    const userIdElement = document.getElementById('myid');
-    // Check if there is a current user signed in.
-    if (user) {
-      // Get the user's email.
-      const email = user.email;
-      // Set the HTML content of the span element to the user's email.
-      userIdElement.innerHTML = email;
-      signOutButtonContainer.style.display = 'inline'; // Show the sign out button when user is logged in
-    } else {
-      // If no user is signed in, display "Guest" as the user ID.
-      userIdElement.innerHTML = 'Login/Sign Up';
-      signOutButtonContainer.style.display = 'none'; // Hide the sign out button when user is not logged in
-       // Add a click event listener to the authButton
-    const authButton = document.getElementById('authButton');
-    authButton.addEventListener('click', function() {
-    // Redirect to your login page
-    window.location.href = '/content/login.html';
-});
-    }
-  });
- 
-</script>
