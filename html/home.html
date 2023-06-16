@@ -28,6 +28,8 @@
         
         .content-container {
             display: flex;
+            justify-content: center;
+            align-items: center;
             width: 100%;
         }
         
@@ -57,7 +59,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            width: 60%;
+            width: 80%;
         }
     </style>
 </head>
@@ -84,14 +86,18 @@
     </div>
 
     <div class="content-container">
-        <div class="gif-container">
-            <!-- Replace the src attribute value with the direct URL of your GIF -->
-            <img src="/pics/giphy.gif" alt="Your GIF">
+        <div class="announcements">
+            <h2>Announcements</h2>
+            <div id="announcementsList"></div>
         </div>
         <div class="about-me">
             <h2>About Me (YungDavi)</h2>
             <div class="line"></div>
             <p>Write something about yourself here.</p>
+        </div>
+        <div class="gif-container">
+            <!-- Replace the src attribute value with the direct URL of your GIF -->
+            <img src="/pics/giphy.gif" alt="Your GIF">
         </div>
     </div>
 
