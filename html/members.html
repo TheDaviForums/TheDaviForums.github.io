@@ -61,6 +61,7 @@
             <span class="bar"></span>
         </a>
         <!--Hamburger button above ^^^^^^^^^^^^^^^-->
+
         <div class="navbar-links">
             <ul>
                 <li><a href="/">Home</a></li>
@@ -78,14 +79,14 @@
 
     <script>
         const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_AUTH_DOMAIN",
-            databaseURL: "YOUR_DATABASE_URL",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_STORAGE_BUCKET",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID",
-            measurementId: "YOUR_MEASUREMENT_ID"
+            apiKey: "AIzaSyA0lgyqDkVdCJrC0u6T1_mv9jIJZDDvxDw",
+    authDomain: "thedaviforums.firebaseapp.com",
+    databaseURL: "https://thedaviforums-default-rtdb.firebaseio.com",
+    projectId: "thedaviforums",
+    storageBucket: "thedaviforums.appspot.com",
+    messagingSenderId: "208690814999",
+    appId: "1:208690814999:web:d1d48bbe6028debbc4bc52",
+    measurementId: "G-FM0NSTQLXQ"
         };
 
         // Initialize Firebase
@@ -111,8 +112,6 @@
                 membersList.appendChild(listItem);
             });
         });
-    </script>
-
 
         // Add logout event listener
         document.getElementById('signOutButtonContainer').addEventListener('click', () => {
