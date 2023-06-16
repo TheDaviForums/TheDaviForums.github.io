@@ -349,3 +349,4 @@ topicsList.addEventListener('click', function(event) {
         topicBody.classList.toggle('expanded');
     }
 });
+});
