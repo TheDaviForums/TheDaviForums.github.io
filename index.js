@@ -339,8 +339,6 @@ firebase.database().ref('Topics').orderByChild('date').on('value', function(snap
         // Add click event listener to expand/collapse topic body.
 // Start of topics
 
-// ... (previous code)
-
 // Add click event listener to expand/collapse topic body
 topicsList.addEventListener('click', function(event) {
     const topicElement = event.target.closest('.topic-box');
@@ -348,5 +346,64 @@ topicsList.addEventListener('click', function(event) {
         const topicBody = topicElement.querySelector('.topic-body');
         topicBody.classList.toggle('expanded');
     }
+    // Check browser compatibility
+if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+    // Create speech recognition instance
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+  
+    // Configure speech recognition settings
+    recognition.continuous = false;
+    recognition.interimResults = false;
+  
+    // Function to handle recognized speech
+    recognition.onresult = function(event) {
+      const transcript = event.results[0][0].transcript;
+      processSpeech(transcript);
+    };
+  
+    // Function to process recognized speech
+    function processSpeech(transcript) {
+      // Add your logic here to handle the recognized speech
+      // You can perform actions based on the recognized commands or trigger specific functionality
+      console.log('Recognized speech:', transcript);
+      // Example: If transcript contains "show announcements", display the announcements box
+      if (transcript.toLowerCase().includes('show announcements')) {
+        hideBoxes();
+        setActiveTab(document.querySelector('.tabs a[href="#announcements"]'));
+        showBox(announcementsBox);
+      }
+      // Example: If transcript contains "sign out", call the signOut function
+      if (transcript.toLowerCase().includes('sign out')) {
+        signOut();
+      }
+    }
+  
+    // Function to start speech recognition
+    function startRecognition() {
+      recognition.start();
+      console.log('Speech recognition started');
+    }
+  
+    // Function to stop speech recognition
+    function stopRecognition() {
+      recognition.stop();
+      console.log('Speech recognition stopped');
+    }
+  
+    // Add event listeners for voice commands
+    const voiceCommandButton = document.getElementById('voiceCommandButton');
+    voiceCommandButton.addEventListener('click', startRecognition);
+  
+    // You can also add voice commands to specific elements or buttons
+    const signOutButton = document.getElementById('signOutButton');
+    signOutButton.addEventListener('click', function() {
+      // Call the signOut function directly when the button is clicked
+      signOut();
+    });
+  } else {
+    console.log('Speech recognition not supported');
+  }
+  
 });
 });

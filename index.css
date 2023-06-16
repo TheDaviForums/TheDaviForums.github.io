@@ -19,3 +19,20 @@
 .topic-body.expanded {
     display: block;
 }
+/* Add your custom CSS styles here */
+
+.light-mode {
+    background-color: white;
+    color: black;
+}
+
+/* Additional CSS styles */
+#voiceChatButton {
+    color: white;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+#voiceChatButton:hover {
+    color: cyan;
+}
