@@ -1,5 +1,5 @@
-<!--Login Stuff-->
 <!DOCTYPE html>
+<html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
@@ -70,10 +70,8 @@
                 <li><a href="#">Store</a></li>
             </ul>
         </div>
-
-        <!-- Start of the leaderboard -->
-        <title>User Points</title>
     </nav>
+
     <div id="list-container">
         <ul id="membersList"></ul>
     </div>
@@ -114,4 +112,62 @@
             });
         });
     </script>
+
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyA0lgyqDkVdCJrC0u6T1_mv9jIJZDDvxDw",
+    authDomain: "thedaviforums.firebaseapp.com",
+    databaseURL: "https://thedaviforums-default-rtdb.firebaseio.com",
+    projectId: "thedaviforums",
+    storageBucket: "thedaviforums.appspot.com",
+    messagingSenderId: "208690814999",
+    appId: "1:208690814999:web:d1d48bbe6028debbc4bc52",
+    measurementId: "G-FM0NSTQLXQ"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // DOM elements
+        const userIdElement = document.getElementById('myid');
+        const signOutButtonContainer = document.getElementById('signOutButtonContainer');
+
+        // Add login event listener
+        document.getElementById('authButton').addEventListener('click', () => {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            firebase.auth().signInWithPopup(provider).then((result) => {
+                // The signed-in user info
+                const user = result.user;
+                userIdElement.innerHTML = user.displayName;
+            }).catch((error) => {
+                // Handle errors here
+                console.log(error);
+            });
+        });
+
+        // Add logout event listener
+        document.getElementById('signOutButtonContainer').addEventListener('click', () => {
+            firebase.auth().signOut().then(() => {
+                // Sign-out successful
+            }).catch((error) => {
+                // An error happened
+                console.log(error);
+            });
+        });
+
+        // Check if user is signed in
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                // User is signed in
+                userIdElement.innerHTML = user.displayName;
+                signOutButtonContainer.style.display = 'inline'; // Show the sign out button when the user is logged in
+            } else {
+                // If no user is signed in, display "Login/Sign Up" as the user ID.
+                userIdElement.innerHTML = 'Login/Sign Up';
+                signOutButtonContainer.style.display = 'none'; // Hide the sign out button when the user is not logged in
+            }
+        });
+    </script>
 </body>
+</html>
