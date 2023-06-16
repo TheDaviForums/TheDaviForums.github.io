@@ -39,18 +39,18 @@
         <div class="left-menu">
             <a href="https://thedaviforums.github.io/html/home.html">Home</a>
             <a href="https://thedaviforums.github.io/">Forums</a>
-            <a href="html/members.html">Members</a>
-            <a href="html/about.html">About</a>
-            <a href="html/store.html">Store</a>
+            <a href="https://thedaviforums.github.io/html/members.html">Members</a>
+            <a href="https://thedaviforums.github.io/html/about.html">About</a>
+            <a href="https://thedaviforums.github.io/html/store.html">Store</a>
             <a href="https://www.twitch.tv/ck_smokie" target="_blank">Support</a>
-            <a href="https://discord.gg/ed8Sn5fA" target="_blank">Discord</a> <!-- Added Discord button with Discord server link -->
+            <a href="https://discord.gg/ed8Sn5fA" target="_blank">Discord</a>
         </div>
         <div class="header-title">
             <h1>The Davi Forums</h1>
         </div>
         <div class="right-menu">
             <li style="display: flex; align-items: center;">
-                <a href="#" id="authButton"><span id="myid"></span></a>
+                <a href="/content/login.html" id="authButton"><span id="myid">Login/Sign Up</span></a>
                 <span id="signOutButtonContainer" style="display: none; margin-left: 10px;"><a onclick="signOut()">Sign Out</a></span>
             </li>
         </div>
@@ -60,5 +60,44 @@
         <!-- Replace the src attribute value with the direct URL of your GIF -->
         <img src="/pics/giphy.gif" alt="Your GIF">
     </div>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyA0lgyqDkVdCJrC0u6T1_mv9jIJZDDvxDw",
+    authDomain: "thedaviforums.firebaseapp.com",
+    databaseURL: "https://thedaviforums-default-rtdb.firebaseio.com",
+    projectId: "thedaviforums",
+    storageBucket: "thedaviforums.appspot.com",
+    messagingSenderId: "208690814999",
+    appId: "1:208690814999:web:d1d48bbe6028debbc4bc52",
+    measurementId: "G-FM0NSTQLXQ"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.auth().onAuthStateChanged(function(user) {
+            const userIdElement = document.getElementById('myid');
+            const signOutButtonContainer = document.getElementById('signOutButtonContainer');
+            // Check if there is a current user signed in.
+            if (user) {
+                // Get the user's email.
+                const email = user.email;
+                // Set the HTML content of the span element to the user's email.
+                userIdElement.innerHTML = email;
+                signOutButtonContainer.style.display = 'inline'; // Show the sign out button when user is logged in
+            } else {
+                // If no user is signed in, display "Login/Sign Up" as the user ID.
+                userIdElement.innerHTML = 'Login/Sign Up';
+                signOutButtonContainer.style.display = 'none'; // Hide the sign out button when user is not logged in
+            }
+        });
+
+        function signOut() {
+            firebase.auth().signOut().then(function() {
+                // Sign-out successful.
+            }).catch(function(error) {
+                // An error happened.
+            });
+        }
+    </script>
 </body>
 </html>
