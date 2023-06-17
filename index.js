@@ -404,60 +404,51 @@ if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
   } else {
     console.log('Speech recognition not supported');
   }
-  // Function to speak the given text using the Web Speech API
-function speak(text) {
-    const synth = window.speechSynthesis;
-    const utterance = new SpeechSynthesisUtterance(text);
-    synth.speak(utterance);
-  }
-  
-  // Function to enable voice chat functionality
-  function enableVoiceChat() {
-    const voiceChatButton = document.getElementById('voiceChatButton');
-  
-    // Check if the browser supports the SpeechRecognition API
-    if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
-      const SpeechRecognition =
-        window.SpeechRecognition || window.webkitSpeechRecognition;
-      const recognition = new SpeechRecognition();
-  
-      // Start listening when the voice chat button is clicked
-      voiceChatButton.addEventListener('click', function () {
-        recognition.start();
-      });
-  
-      // Handle the recognition result
-      recognition.addEventListener('result', function (event) {
-        const transcript = event.results[0][0].transcript;
-        const textInput = document.activeElement;
-  
-        // If there is an active text input element, insert the transcript
-        if (textInput && textInput.tagName === 'INPUT') {
-          const startPosition = textInput.selectionStart;
-          const endPosition = textInput.selectionEnd;
-          textInput.value =
-            textInput.value.substring(0, startPosition) +
-            transcript +
-            textInput.value.substring(endPosition);
-        } else {
-          // Otherwise, speak the transcript
-          speak(transcript);
-        }
-      });
-  
-      // Stop listening when the voice recognition ends
-      recognition.addEventListener('end', function () {
-        recognition.stop();
-      });
-    } else {
-      // SpeechRecognition API is not supported
-      voiceChatButton.style.display = 'none';
-      console.log('SpeechRecognition API is not supported in this browser.');
-    }
-  }
-  
-  // Call the enableVoiceChat function to enable voice chat functionality
-  enableVoiceChat();
+  // Create a SpeechRecognition object
+const recognition = new SpeechRecognition();
 
+// Set properties for the recognition
+recognition.continuous = true; // Continuous listening
+recognition.interimResults = true; // Show interim results
+
+// Event listener for the start button
+startBtn.addEventListener('click', () => {
+  recognition.start();
+});
+
+// Event listener for the stop button
+stopBtn.addEventListener('click', () => {
+  recognition.stop();
+});
+
+// Event listener for receiving speech recognition results
+recognition.addEventListener('result', (event) => {
+  const transcript = Array.from(event.results)
+    .map((result) => result[0].transcript)
+    .join('');
+
+  // Display the transcription in the HTML element
+  transcriptionDiv.textContent = transcript;
+
+  // Process the recognized speech
+  processSpeech(transcript);
+});
+
+// Function to process recognized speech
+function processSpeech(transcript) {
+  // Add your logic here to handle the recognized speech
+  // You can perform actions based on the recognized commands or trigger specific functionality
+  console.log('Recognized speech:', transcript);
+  // Example: If transcript contains "show announcements", display the announcements box
+  if (transcript.toLowerCase().includes('show announcements')) {
+    hideBoxes();
+    setActiveTab(document.querySelector('.tabs a[href="#announcements"]'));
+    showBox(announcementsBox);
+  }
+  // Example: If transcript contains "sign out", call the signOut function
+  if (transcript.toLowerCase().includes('sign out')) {
+    signOut();
+  }
+}
 });
 });
