@@ -458,52 +458,6 @@ function speak(text) {
   
   // Call the enableVoiceChat function to enable voice chat functionality
   enableVoiceChat();
-// Create a SpeechRecognition object
-const recognition = new SpeechRecognition();
-
-// Set properties for the recognition
-recognition.continuous = true; // Continuous listening
-recognition.interimResults = true; // Show interim results
-
-// Event listener for the start button
-startBtn.addEventListener('click', () => {
-  recognition.start();
-});
-
-// Event listener for the stop button
-stopBtn.addEventListener('click', () => {
-  recognition.stop();
-});
-
-// Event listener for receiving speech recognition results
-recognition.addEventListener('result', (event) => {
-  const transcript = Array.from(event.results)
-    .map((result) => result[0].transcript)
-    .join('');
-
-  // Display the transcription in the HTML element
-  transcriptionDiv.textContent = transcript;
-
-  // Process the recognized speech
-  processSpeech(transcript);
-});
-
-// Function to process recognized speech
-function processSpeech(transcript) {
-  // Add your logic here to handle the recognized speech
-  // You can perform actions based on the recognized commands or trigger specific functionality
-  console.log('Recognized speech:', transcript);
-  // Example: If transcript contains "show announcements", display the announcements box
-  if (transcript.toLowerCase().includes('show announcements')) {
-    hideBoxes();
-    setActiveTab(document.querySelector('.tabs a[href="#announcements"]'));
-    showBox(announcementsBox);
-  }
-  // Example: If transcript contains "sign out", call the signOut function
-  if (transcript.toLowerCase().includes('sign out')) {
-    signOut();
-  }
-}
 
 });
 });
