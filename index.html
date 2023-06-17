@@ -160,22 +160,6 @@
             background-color: white;
             color: black;
         }
-
-        /* Added styles for header */
-        .header-title {
-            display: flex;
-            align-items: center;
-        }
-
-        .support-discord-container {
-            display: flex;
-            align-items: center;
-            margin-left: 10px;
-        }
-
-        .support-discord-container a {
-            margin-right: 10px;
-        }
     </style>
 </head>
 <body>
@@ -189,9 +173,9 @@
         </div>
         <div class="header-title">
             <h1>The Davi Forums</h1>
-            <div class="support-discord-container">
+            <div style="display: flex; align-items: center;">
                 <a href="https://www.twitch.tv/ck_smokie" target="_blank">Support</a>
-                <a href="https://discord.gg/ed8Sn5fA" target="_blank">Discord</a>
+                <a href="https://discord.gg/ed8Sn5fA" target="_blank">Discord</a> <!-- Added Discord button with Discord server link -->
             </div>
         </div>
         <div class="right-menu">
@@ -203,29 +187,88 @@
             </li>
         </div>
     </div>
-
+    
     <div class="content">
         <div class="forum-post">
-            <h2>Forum Post Title</h2>
-            <p>This is the content of the forum post.</p>
+            <h2>Forum Post</h2>
+            <p>Here will be anything related to the forums.</p>
         </div>
         
         <div class="announcements">
             <h2>Announcements</h2>
-            <p>Check out our latest announcements and updates!</p>
+            <p>Here will be anything new that comes out like music etc...</p>
         </div>
     </div>
 
-    <div class="tiny-text">
-        <p>This is a tiny text at the bottom of the page.</p>
+    <div class="community-section">
+        <div class="tabs">
+            <a href="#announcements">Announcements</a>
+            <a href="#topics">Topics</a>
+            <a href="#music">My Music</a>
+            <a href="#suggestions">Suggestions</a>
+        </div>
+        <hr>
+        <div id="onlineUsers" class="online-users">Loading...</div>
     </div>
 
-    <script>
-        // Add your JavaScript code here
-        function signOut() {
-            // Sign out the user
-            // ...
-        }
-    </script>
+    <div class="content">
+
+        <div id="announcements" class="announcements">
+            <h2>Announcements</h2>
+            <div id="addAnnouncementButtonContainer" style="display: none;">
+                <button id="addAnnouncementButton">Add Announcement</button>
+            </div>
+            <div id="announcementFormContainer" style="display: none;">
+                <input type="text" id="announcementSubject" placeholder="Subject"><br>
+                <textarea id="announcementBody" placeholder="Body"></textarea><br>
+                <button id="cancelAnnouncementButton">Cancel</button>
+                <button id="submitAnnouncementButton">Submit</button>
+            </div>
+            <div id="announcementsList"></div>
+        </div>       
+    
+        <div id="topics-box" class="forum-post" style="display: none;">
+            <h2>Topics Box</h2>
+            <div id="addTopicButtonContainer">
+                <button id="addTopicButton">Add Topic</button>
+            </div>
+            <div id="topicFormContainer" style="display: none;">
+                <input type="text" id="topicSubject" placeholder="Subject"><br>
+                <textarea id="topicBody" placeholder="Body"></textarea><br>
+                <button id="cancelTopicButton">Cancel</button>
+                <button id="submitTopicButton">Submit</button>
+            </div>
+            <div id="topicsList"></div>
+        </div>
+        
+
+        <div id="music-box" class="forum-post" style="display: none;">
+            <h2>My Music Box</h2>
+            <p>This is the box for my music.</p>
+        </div>
+     
+        <div id="suggestions" class="suggestions">
+            <h2>Suggestions</h2>
+        <div id="addSuggestionButtonContainer">
+            <button id="addSuggestionButton">Add Suggestion</button>
+        </div>
+        <div id="suggestionFormContainer" style="display: none;">
+            <input type="text" id="suggestionSubject" placeholder="Subject"><br>
+            <textarea id="suggestionBody" placeholder="Body"></textarea><br>
+            <button id="cancelSuggestionButton">Cancel</button>
+            <button id="submitSuggestionButton">Submit</button>
+        </div>
+    </div>
+    </div>
+
+    <div class="memebase-window">
+        <iframe src="https://www.memedroid.com/" frameborder="0"></iframe>
+    </div>
+
+    <div class="soundcloud-window">
+        <iframe src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/user-710640859&color=%23555555&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true" frameborder="0"></iframe>
+    </div>
+
+    <script src="index.js"></script>
 </body>
 </html>
