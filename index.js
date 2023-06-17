@@ -490,4 +490,3 @@ recognition.addEventListener('result', (event) => {
   transcriptionDiv.textContent = transcript;
 
 });
-});
