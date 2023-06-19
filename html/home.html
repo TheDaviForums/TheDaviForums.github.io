@@ -63,6 +63,12 @@
             width: 80%;
         }
         
+        .header-title {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
         .header-title h1 {
             color: white;
         }
@@ -83,10 +89,14 @@
             <h1>The Davi Forums</h1>
         </div>
         <div class="right-menu">
-            <li style="display: flex; align-items: center;">
+            <div style="display: flex; flex-direction: column; align-items: center;">
                 <a href="#" id="authButton"><span id="myid">Login/Sign Up</span></a>
-                <span id="signOutButtonContainer" style="display: none; margin-left: 10px;"><a onclick="signOut()">Sign Out</a></span>
-            </li>
+                <span id="signOutButtonContainer" style="display: none; margin-top: 10px;"><a onclick="signOut()">Sign Out</a></span>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center; margin-top: 10px;">
+                <a href="https://www.twitch.tv/ck_smokie" target="_blank">Support</a>
+                <a href="https://discord.gg/ed8Sn5fA" target="_blank">Discord</a>
+            </div>
         </div>
     </div>
 
@@ -111,13 +121,13 @@
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyA0lgyqDkVdCJrC0u6T1_mv9jIJZDDvxDw",
-    authDomain: "thedaviforums.firebaseapp.com",
-    databaseURL: "https://thedaviforums-default-rtdb.firebaseio.com",
-    projectId: "thedaviforums",
-    storageBucket: "thedaviforums.appspot.com",
-    messagingSenderId: "208690814999",
-    appId: "1:208690814999:web:d1d48bbe6028debbc4bc52",
-    measurementId: "G-FM0NSTQLXQ"
+            authDomain: "thedaviforums.firebaseapp.com",
+            databaseURL: "https://thedaviforums-default-rtdb.firebaseio.com",
+            projectId: "thedaviforums",
+            storageBucket: "thedaviforums.appspot.com",
+            messagingSenderId: "208690814999",
+            appId: "1:208690814999:web:d1d48bbe6028debbc4bc52",
+            measurementId: "G-FM0NSTQLXQ"
         };
 
         // Initialize Firebase
