@@ -72,6 +72,19 @@
         .header-title h1 {
             color: white;
         }
+
+        .support-discord {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 10px;
+        }
+        
+        .support-discord a {
+            color: white;
+            text-decoration: none;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
@@ -82,21 +95,19 @@
             <a href="https://thedaviforums.github.io/html/members.html">Members</a>
             <a href="https://thedaviforums.github.io/html/about.html">About</a>
             <a href="https://thedaviforums.github.io/html/store.html">Store</a>
-            <a href="https://www.twitch.tv/ck_smokie" target="_blank">Support</a>
-            <a href="https://discord.gg/ed8Sn5fA" target="_blank">Discord</a>
         </div>
         <div class="header-title">
             <h1>The Davi Forums</h1>
-        </div>
-        <div class="right-menu">
-            <div style="display: flex; flex-direction: column; align-items: center;">
-                <a href="#" id="authButton"><span id="myid">Login/Sign Up</span></a>
-                <span id="signOutButtonContainer" style="display: none; margin-top: 10px;"><a onclick="signOut()">Sign Out</a></span>
-            </div>
-            <div style="display: flex; flex-direction: column; align-items: center; margin-top: 10px;">
+            <div class="support-discord">
                 <a href="https://www.twitch.tv/ck_smokie" target="_blank">Support</a>
                 <a href="https://discord.gg/ed8Sn5fA" target="_blank">Discord</a>
             </div>
+        </div>
+        <div class="right-menu">
+            <li style="display: flex; align-items: center;">
+                <a href="#" id="authButton"><span id="myid">Login/Sign Up</span></a>
+                <span id="signOutButtonContainer" style="display: none; margin-left: 10px;"><a onclick="signOut()">Sign Out</a></span>
+            </li>
         </div>
     </div>
 
